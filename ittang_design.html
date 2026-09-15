@@ -1395,9 +1395,11 @@ const Store = (() => {
         sb.from(t.projects).select("id,data").order("id"),
         sb.from(t.leads).select("*").order("id"),
       ]);
-      if (m.error || p.error || l.error) throw (m.error || p.error || l.error);
+      this.loadErrors = [m.error && ("members: " + m.error.message), p.error && ("projects: " + p.error.message), l.error && ("deals: " + l.error.message)].filter(Boolean);
+      if (m.error) throw m.error;
       MEMBERS.splice(0, MEMBERS.length, ...m.data.map(r => mem(r.id, r.name, r.unit, r.role, r.title, { email: r.email, phone: r.phone, perms: r.perms || {}, active: r.active !== false, aliases: r.aliases || [] })));
-      DATA.splice(0, DATA.length, ...p.data.map(r => r.data));
+      if (!p.error) DATA.splice(0, DATA.length, ...(p.data || []).map(r => r.data).filter(Boolean));
+      if (l.error) l.data = [];
       CRM_LEADS.splice(0, CRM_LEADS.length, ...l.data.map(r => ({ ...r, designDetail: r.design_detail || r.designDetail || null, consultDate: r.consult_date || r.consultDate, designOwner: r.design_owner || r.designOwner, planOwner: r.plan_owner || r.planOwner, pmId: r.pm_id || r.pmId })));
     },
     async flush(){
@@ -5317,6 +5319,14 @@ function loadSettings(){
     const em = (Store.supa.sessionEmail || "").toLowerCase();
     const mem = em ? MEMBERS.find(x => (x.email || "").toLowerCase() === em && x.active) : null;
     currentUserId = mem ? mem.id : null;
+    const errs = Store.supa.loadErrors || [];
+    const badge = $("#storeBadge");
+    if (badge){
+      if (errs.length){ badge.textContent = "서버 오류: " + errs.join(" / "); badge.style.color = "#E52222"; }
+      else badge.textContent = `서버 · 구성원 ${MEMBERS.length}명 · 프로젝트 ${DATA.length}건`;
+      badge.title = errs.length ? errs.join("\n") : "Supabase design_projects에서 로드됨";
+    }
+    if (errs.length) showToast("서버 데이터 일부를 불러오지 못했습니다 — " + errs.join(" / "));
   }
   loadSettings();
   [F.sales, F.design, F.pm, F.plan, F.eng, F.site].forEach(sel => {
