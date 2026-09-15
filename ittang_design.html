@@ -1276,7 +1276,7 @@ SCHED_DESIGNERS.push(...MEMBERS.filter(m => m.active && ["기획파트","디자�
 const EMPLOYEES = MEMBERS.filter(m => m.active).map(mDisplay).sort((a, b) => a.localeCompare(b, "ko"));
 const EMPLOYEES_ALL = [...new Set([...EMPLOYEES, ...DATA.flatMap(ownerList)])].sort((a, b) => a.localeCompare(b, "ko"));
 if (new URLSearchParams(location.search).has("embed")) document.body.classList.add("embed");
-DATA.forEach(p => {
+function normalizeProject(p){
   if (!p.history) p.history = [];
   if (!p.meetings) p.meetings = [];
   if (p.owners.cert === undefined) p.owners.cert = null;
@@ -1306,7 +1306,8 @@ DATA.forEach(p => {
     S61:"P8", S62:"P8", W4:"P8", S63:"P8", C6:"P8", C62:"P8", S71:"P8", S72:"P8", W5:"P8" };
   if (p.status === "S5"){ p.status = "P5"; p.orderWon = true; }
   else if (MIG[p.status]) p.status = MIG[p.status];
-});
+}
+DATA.forEach(normalizeProject);
 /* ---- 변경 이력 ---- */
 function nowStr(){
   const d = new Date();
@@ -1398,7 +1399,7 @@ const Store = (() => {
       this.loadErrors = [m.error && ("members: " + m.error.message), p.error && ("projects: " + p.error.message), l.error && ("deals: " + l.error.message)].filter(Boolean);
       if (m.error) throw m.error;
       MEMBERS.splice(0, MEMBERS.length, ...m.data.map(r => mem(r.id, r.name, r.unit, r.role, r.title, { email: r.email, phone: r.phone, perms: r.perms || {}, active: r.active !== false, aliases: r.aliases || [] })));
-      if (!p.error) DATA.splice(0, DATA.length, ...(p.data || []).map(r => r.data).filter(Boolean));
+      if (!p.error){ DATA.splice(0, DATA.length, ...(p.data || []).map(r => r.data).filter(Boolean)); DATA.forEach(normalizeProject); }
       if (l.error) l.data = [];
       CRM_LEADS.splice(0, CRM_LEADS.length, ...l.data.map(r => ({ ...r, designDetail: r.design_detail || r.designDetail || null, consultDate: r.consult_date || r.consultDate, designOwner: r.design_owner || r.designOwner, planOwner: r.plan_owner || r.planOwner, pmId: r.pm_id || r.pmId })));
     },
