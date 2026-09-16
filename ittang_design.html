@@ -737,7 +737,7 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
 <header class="app-header">
   <span class="wordmark" id="homeLink" role="button" tabindex="0" title="홈으로">아이땅 <small>· 디자인설계업무관리</small></span>
   <span class="ver">웹앱 v1.0</span>
-  <span class="refdate">기준일 2026-09-03</span>
+  <span class="refdate">기준일(오늘) <b id="refDateVal"></b></span>
   <span class="store-badge" id="storeBadge" data-st="idle" title="데이터 저장 위치 — 로컬: 이 브라우저에 변경분 저장 / Supabase: 회사 공용 DB">서버 연결</span>
   <span class="hd-spacer"></span>
   <span class="userchip" id="userChip" title="로그인 계정"></span>
@@ -1034,7 +1034,7 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
 <script>
 "use strict";
 /* ================= 데이터 ================= */
-const REF = "2026-09-03";
+const REF = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); /* 오늘(KST) */
 const DATA = []; /* 서버(design_projects)에서 로드 */
 
 /* ================= 상태 정의 ================= */
@@ -5329,6 +5329,7 @@ function loadSettings(){
     }
     if (errs.length) showToast("서버 데이터 일부를 불러오지 못했습니다 — " + errs.join(" / "));
   }
+  const rd = $("#refDateVal"); if (rd) rd.textContent = REF;
   loadSettings();
   [F.sales, F.design, F.pm, F.plan, F.eng, F.site].forEach(sel => {
     EMPLOYEES.forEach(n => { const o = document.createElement("option"); o.value = o.textContent = n; sel.appendChild(o); });
