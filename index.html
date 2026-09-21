@@ -264,6 +264,7 @@ lucide-react/dist/esm/lucide-react.mjs:
     <label style="display:flex;flex-direction:column;gap:5px;font-size:12.5px;color:#5c5f66">비밀번호
       <input type="password" id="sgPw" autocomplete="current-password" required placeholder="비밀번호" style="font:inherit;font-size:14.5px;border:1px solid #DBDCDF;border-radius:8px;padding:10px 12px"></label>
     <button type="submit" id="sgBtn" style="font:inherit;margin-top:4px;padding:11px;font-size:14px;font-weight:600;background:#3366FF;color:#fff;border:none;border-radius:8px;cursor:pointer">로그인</button>
+    <button type="button" id="sgSignUp" style="font:inherit;padding:9px;font-size:12.5px;background:#fff;color:#3366FF;border:1px solid #3366FF;border-radius:8px;cursor:pointer">처음이면 계정 만들기 (조직도 등록 이메일 + 원하는 비밀번호)</button>
     <div id="sgErr" style="font-size:12.5px;color:#E52222" hidden></div>
     <div style="font-size:11.5px;color:#989BA2;line-height:1.6">영업관리·디자인설계 공용 계정입니다. 계정은 관리자가 발급합니다.</div>
   </form>
@@ -342,6 +343,17 @@ lucide-react/dist/esm/lucide-react.mjs:
     window.__ittangLogout = async function(){ try { await sb.auth.signOut(); } catch(e){} try { localStorage.removeItem("ittang.session"); localStorage.removeItem("ittang.design.session"); } catch(e){} location.reload(); };
     hideGate(); runBundle();
   })().catch(function(e){ console.error(e); localFallback("서버 연결 오류: " + (e && e.message || e)); });
+  document.getElementById("sgSignUp").addEventListener("click", async function(){
+    var btn = this; errEl.hidden = true;
+    var sb = window.__sb; if (!sb){ showErr("서버에 연결되지 않았습니다. 인터넷 연결을 확인하세요."); return; }
+    var email = document.getElementById("sgEmail").value.trim(), pw = document.getElementById("sgPw").value;
+    if (!email){ showErr("이메일을 입력하세요"); return; }
+    if (pw.length < 6){ showErr("비밀번호는 6자 이상으로 정해주세요"); return; }
+    btn.disabled = true; btn.textContent = "계정 만드는 중…";
+    var r = await sb.auth.signUp({ email: email, password: pw });
+    if (r.error){ showErr(/already/i.test(r.error.message) ? "이미 계정이 있는 이메일입니다. '로그인'을 누르세요." : r.error.message); btn.disabled = false; btn.textContent = "처음이면 계정 만들기 (조직도 등록 이메일 + 원하는 비밀번호)"; return; }
+    location.reload();
+  });
   document.getElementById("sgForm").addEventListener("submit", async function(e){
     e.preventDefault();
     var btn = document.getElementById("sgBtn"); errEl.hidden = true;
