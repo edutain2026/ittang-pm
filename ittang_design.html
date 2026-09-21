@@ -5460,7 +5460,7 @@ async function submitLogin(){
   if (!id){ $("#lgErr").textContent = "계정을 선택하세요"; return; }
   doLogin(id);
 }
-$("#lgBtn").addEventListener("click", submitLogin);
+$("#lgBtn").addEventListener("click", () => { lgMode = "in"; submitLogin(); });
 let lgMode = "in";
 (function(){
   const btn = $("#lgBtn"); if (!btn) return;
@@ -5469,9 +5469,14 @@ let lgMode = "in";
   su.style.cssText = "margin-top:6px;font-size:12.5px;width:100%";
   su.textContent = "처음이면 계정 만들기 (조직도 등록 이메일 + 원하는 비밀번호)";
   btn.insertAdjacentElement("afterend", su);
-  su.addEventListener("click", () => { lgMode = "up"; submitLogin(); });
+  su.addEventListener("click", () => {
+    const pw = $("#lgPw").value, em = $("#lgEmail").value.trim();
+    if (!em || !pw){ $("#lgErr").style.color = ""; $("#lgErr").textContent = "계정을 만들려면 이메일과 비밀번호(6자 이상)를 먼저 입력하세요"; return; }
+    if (!confirm(em + " 로 새 계정을 만들까요?\n(이미 계정이 있으면 '로그인'을 누르세요)")) return;
+    lgMode = "up"; submitLogin();
+  });
 })();
-$("#loginForm").addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); submitLogin(); } });
+$("#loginForm").addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); lgMode = "in"; submitLogin(); } });
 $("#btnLogout").addEventListener("click", doLogout);
 /* 저장 배지 클릭: 로컬 모드에서 이 브라우저의 변경분을 지우고 내장 데이터로 되돌리기(테스트용) */
 $("#storeBadge").addEventListener("click", () => {
