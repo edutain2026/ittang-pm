@@ -103,6 +103,13 @@ a{color:var(--accent)}
 .org-card.inactive{opacity:.55}
 .org-card .oc-cnt{margin-left:auto;font-size:10.5px;color:var(--ink3);font-family:var(--mono);flex:none}
 .org-inactive{border-top:1px dashed var(--line2);padding-top:10px}
+.org-rates{border-top:1px dashed var(--line2);padding-top:12px;margin-top:12px}
+.rate-ctl{display:flex;align-items:center;gap:8px;margin:8px 0 10px;font-size:12px;color:var(--ink2)}
+.rate-ctl button{border:1px solid var(--line2);border-radius:6px;padding:5px 11px;background:var(--surface);font-size:12px;cursor:pointer}.rate-ctl button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.rate-ctl select{padding:4px 6px}
+.rate-tab td input[type=number]{width:90px;text-align:right}.rate-rules td input[type=number]{width:110px;text-align:right}.rate-tab tr.dim td{color:var(--ink3)}.rate-tab td.num,.rate-rules td.num{text-align:right}
+.rate-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start}@media (max-width:1000px){.rate-grid{grid-template-columns:1fr}}
+.rate-sub{font-size:12px;font-weight:600;color:var(--ink2);margin:4px 0 6px}
+.gradetag{display:inline-block;border:1px solid var(--line2);border-radius:999px;padding:1px 9px;font-size:11.5px;background:var(--surface)}
 .org-inactive .og-title{font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:8px}
 .org-inactive .oi-list{display:flex;flex-wrap:wrap;gap:6px}
 .org-inactive .oi-list span{font-size:11.5px;color:var(--ink3);background:var(--surface2);border-radius:999px;padding:3px 9px}
@@ -110,21 +117,30 @@ a{color:var(--accent)}
   padding:5px 8px;font-size:12px}
 
 /* ---------- KPI ---------- */
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);
+.kpi-period{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 20px;background:var(--surface);border-bottom:1px solid var(--line);font-size:12px;color:var(--ink2)}
+.kpi-period .kp-lab{font-weight:700;color:var(--ink)}
+.kpi-period input[type=date]{padding:3px 6px;font-size:12px}
+.kpi-period .qbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.kpi-period .kp-note{margin-left:auto;color:var(--accent);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--line);
   border-bottom:1px solid var(--line)}
-.kpi{background:var(--surface);padding:14px 20px 12px;cursor:pointer;transition:background .12s}
+.kpi{background:var(--surface);padding:14px 16px 12px;min-width:0;cursor:pointer;transition:background .12s}
 .kpi:hover{background:var(--surface2)}
 .kpi:hover .num{color:var(--accent)}
 .kpi.danger:hover .num{color:var(--danger)}
 .kpi-chip{border:1px solid var(--accent);color:var(--accent);background:rgba(51,102,255,.06);border-radius:999px;padding:3px 10px;font-size:11px;cursor:pointer;white-space:nowrap}
 .kpi-chip b{margin-left:3px}
 .kpi-chip:hover{background:rgba(51,102,255,.12)}
-.kpi .num{font-family:var(--mono);font-size:26px;font-weight:500;line-height:1.15;letter-spacing:-.02em}
-.kpi .num small{font-size:14px;color:var(--ink2);font-weight:400}
+.kpi .num{font-family:var(--mono);font-size:clamp(17px,1.5vw,24px);font-weight:500;line-height:1.15;letter-spacing:-.02em;white-space:nowrap}
+.kpi .num small{font-size:12px;color:var(--ink2);font-weight:400;margin-left:2px}
 .kpi .lab{font-size:12px;color:var(--ink2);margin-top:2px}
 .kpi .sub{font-size:11px;color:var(--ink3);margin-top:1px}
 .kpi.danger .num{color:var(--danger)}
-.kpi.warn-tint .num small.wv{color:var(--warn)}
+.kpi.warn-tint .sub .wv{color:var(--warn);font-weight:600}
+.kpi.t-peach{background:#fbe9dc}.kpi.t-peach:hover{background:#f7dcc8}
+.kpi.t-blue{background:#c9d5ea}.kpi.t-blue:hover{background:#b9c8e3}
+.kpi.t-gray{background:#d9d9d9}.kpi.t-gray:hover{background:#cdcdcd}
+.kpi.t-peach .lab,.kpi.t-blue .lab,.kpi.t-gray .lab{color:var(--ink);font-weight:600}
 
 /* ---------- toolbar ---------- */
 .toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 20px;
@@ -300,8 +316,15 @@ table.sched-t{width:100%;border-collapse:collapse;table-layout:fixed;min-width:9
 .sched-t thead th{font-size:11px;color:var(--ink3);font-weight:500;padding:7px 4px;background:var(--surface2)}
 .sched-t thead th.today{color:var(--accent);font-weight:700}
 .sched-t thead .dw{margin-right:5px}
-.snm-h{width:132px}
-.snm{width:132px;text-align:left;padding:8px 10px;vertical-align:top;background:var(--surface2)}
+.snm-h{width:168px}
+.snm{width:168px;text-align:left;padding:8px;vertical-align:middle;background:var(--surface2)}
+.sc-card{margin-bottom:0;white-space:nowrap;gap:12px;padding:14px 12px 14px 14px;border-radius:12px;border-color:var(--line2);position:relative}
+.sc-card .oc-av{width:36px;height:36px;font-size:15px;font-weight:600;background:#e6e7ea;color:var(--ink)}
+.sc-card.lead .oc-av{background:var(--accent);color:#fff}
+.sc-card .oc-nm{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.sc-card .sc-wk{position:absolute;right:8px;top:4px;font-size:10px;color:var(--accent)}
+.sgrp th{text-align:left;padding:6px 10px;background:var(--surface2);font-size:11.5px;color:var(--ink2);border-top:2px solid var(--line2)}
+.sgrp th .ou-name{font-weight:700}
 .snm b{font-size:13px}
 .sgrade{display:block;font-size:10.5px;color:var(--ink3);font-weight:400}
 .swk{display:block;font-size:11px;color:var(--accent);margin-top:2px}
@@ -362,7 +385,9 @@ body.dp-open{overflow:hidden}
 .dcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--rc);padding:16px 18px}
 .dcard h3{font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);margin-bottom:12px}
 .dcard h3 .sub{font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink3);font-size:11.5px;margin-left:8px}
-.dkpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.dkpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.dkpis.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.dk .v .v2{font-size:15px;font-weight:500;color:var(--ink2);margin-left:6px}
+table.dtab tr.rowlink{cursor:pointer}table.dtab tr.rowlink:hover td{background:var(--surface2)}table.dtab td.neg{color:var(--danger)}
 @media (max-width:900px){.dkpis{grid-template-columns:repeat(2,1fr)}}
 .dk{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:var(--surface)}
 .dk .v{font-family:var(--mono);font-size:20px;font-weight:600;line-height:1.2}
@@ -372,6 +397,7 @@ body.dp-open{overflow:hidden}
 .dk.blue .v{color:var(--accent)}
 .dk.green .v{color:var(--st-won)}
 .hbar{display:grid;grid-template-columns:110px 1fr 88px;gap:8px;align-items:center;padding:4px 0;font-size:12px}
+.hbar-wide .hbar{grid-template-columns:110px 1fr 230px}
 .hbar .nm{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hbar .tr{background:var(--surface2);border-radius:4px;height:14px;overflow:hidden}
 .hbar .tr i{display:block;height:100%;border-radius:4px;min-width:2px}
@@ -386,11 +412,12 @@ table.dtab td.pos{color:var(--st-won)}
 .dctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .dctl .grp{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--ink2)}
 .dctl input[type="date"]{border:1px solid var(--line2);border-radius:var(--r);padding:5px 8px;font-size:12px;background:var(--surface);color:var(--ink);font-family:var(--mono)}
-.dctl .qbtn{border:1px dashed var(--line2);border-radius:999px;padding:4px 10px;font-size:11px;color:var(--ink2);background:var(--surface);cursor:pointer}
-.dctl .qbtn:hover{border-color:var(--accent);color:var(--accent)}
+.dctl .qbtn,.kpi-period .qbtn{border:1px dashed var(--line2);border-radius:999px;padding:4px 10px;font-size:11px;color:var(--ink2);background:var(--surface);cursor:pointer}
+.dctl .qbtn:hover,.kpi-period .qbtn:hover{border-color:var(--accent);color:var(--accent)}
 .dchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
 .dchips-lab{font-size:11px;color:var(--ink3);margin-right:2px}
 .dchip{border:1px solid var(--line2);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--ink2);background:var(--surface);cursor:pointer}
+.desdd{min-width:120px;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.desdd .caret{color:var(--ink3);margin-left:4px}
 .dchip:hover{border-color:var(--st-design);color:var(--st-design)}
 .dchip.on{background:var(--st-design);border-color:var(--st-design);color:#fff}
 /* 목록 헤더 정렬 */
@@ -719,7 +746,6 @@ table.perm{width:100%;border-collapse:collapse;font-size:12.5px;margin:2px 0 14p
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .kpis{grid-template-columns:repeat(2,1fr)}
-  .kpi:last-child{grid-column:1/-1}
   .toolbar input[type=search]{width:130px}
   .drawer{width:100vw}
   .fgrid{grid-template-columns:1fr}
@@ -736,7 +762,7 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
 
 <header class="app-header">
   <span class="wordmark" id="homeLink" role="button" tabindex="0" title="홈으로">아이땅 <small>· 디자인설계업무관리</small></span>
-  <span class="ver">웹앱 v1.0</span>
+  <span class="ver">웹앱 v1.1</span>
   <span class="refdate">기준일(오늘) <b id="refDateVal"></b></span>
   <span class="store-badge" id="storeBadge" data-st="idle" title="데이터 저장 위치 — 로컬: 이 브라우저에 변경분 저장 / Supabase: 회사 공용 DB">서버 연결</span>
   <span class="hd-spacer"></span>
@@ -750,7 +776,7 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
 <div class="login-scrim" id="loginScrim" hidden>
   <div class="login-box" id="loginForm">
     <div class="lg-brand">아이땅 <small>· 디자인설계업무관리</small></div>
-    <div style="display:inline-block;background:#3366FF;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;margin:4px 0 2px">웹앱 v1.0 · 공용 계정</div>
+    <div style="display:inline-block;background:#3366FF;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;margin:4px 0 2px">웹앱 v1.1 · 공용 계정</div>
     <div class="lg-sub">회사 공용 계정(ittang_sales와 동일)으로 로그인합니다</div>
     <label>계정
       <select id="lgUser" required></select>
@@ -767,6 +793,7 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
   </div>
 </div>
 
+<div class="kpi-period" id="kpiPeriod"></div>
 <section class="kpis" id="kpis" aria-label="핵심 지표"></section>
 
 <section class="toolbar">
@@ -779,7 +806,7 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
     <button id="vwSched" aria-pressed="false">디자이너별 스케줄</button>
   </div>
   <div class="fbar">
-    <input type="search" id="fq" placeholder="텍스트 검색" aria-label="텍스트 검색">
+    <input type="search" id="fq" placeholder="텍스트 검색 (프로젝트명·유형·단계·코드·담당자)" aria-label="텍스트 검색" title="프로젝트명, 유형, 단계, 코드, 담당자를 검색합니다. 여러 단어는 공백으로 구분">
     <button class="btn-cond" id="btnCond">＋ 조건추가</button>
     <button class="btn-cond" id="btnStages" title="파이프라인에 표시할 상태 선택">상태 선택</button>
     <span class="chips" id="condChips"></span>
@@ -895,10 +922,10 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
             <select id="inSector"><option>민간</option><option>공공</option></select>
           </div>
           <div class="fld" data-f="amount">
-            <label for="inAmount">예상 수주금액 <span class="req">*</span></label>
-            <input type="text" id="inAmount" inputmode="numeric" placeholder="원 단위" autocomplete="off">
+            <label for="inAmount">예상 수주금액 (백만원) <span class="req">*</span></label>
+            <input type="text" id="inAmount" inputmode="decimal" placeholder="백만원 단위 (예: 45 = 4,500만원)" autocomplete="off">
             <div class="conv" id="amtConv"></div>
-            <span class="msg">예상 수주금액을 원 단위 숫자로 입력하세요</span>
+            <span class="msg">예상 수주금액을 백만원 단위 숫자로 입력하세요</span>
           </div>
         </div>
       </div>
@@ -1035,6 +1062,8 @@ body.embed .app-header{padding-top:10px;padding-bottom:10px}
 "use strict";
 /* ================= 데이터 ================= */
 const REF = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); /* 오늘(KST) */
+/* 실제 오늘 날짜(브라우저 기준, YYYY-MM-DD) — 차수 생성 시 요청일 자동 세팅에 사용 */
+const todayISO = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 const DATA = []; /* 서버(design_projects)에서 로드 */
 
 /* ================= 상태 정의 ================= */
@@ -1064,15 +1093,55 @@ const RATE_TABLE = {
   "장상범": { grade: "초급", daily: 193221 }, "양희용": { grade: "초급", daily: 193221 }, "박해솔": { grade: "초급", daily: 193221 },
   "김정수": { grade: "보조", daily: 159663 }, "허현": { grade: "보조", daily: 159663 }, "안수연": { grade: "보조", daily: 159663 },
 };
-const hourlyOf = name => {
-  const key = Object.keys(RATE_TABLE).find(k => (name || "").includes(k));
-  return key ? RATE_TABLE[key].daily / 8 : RATE_TABLE["장상범"].daily / 8; /* 미등록자 초급 적용 */
-};
-const gradeOf = name => {
-  const key = Object.keys(RATE_TABLE).find(k => (name || "").includes(k));
-  return key ? RATE_TABLE[key].grade : "초급(기본)";
-};
-const WORK_KINDS = ["기획","구상","모델링/랜더링","제안서","도면","디자인수정","프로젝트회의","기타"];
+/* 등급별 기본 일당(엔지니어링 노임단가 기준) — 조직도에서 등급을 바꾸면 이 값이 기본으로 채워짐 */
+const GRADES = ["총괄","특급","고급","중급","초급","보조"];
+const GRADE_DAILY = { "총괄": 306516, "특급": 265163, "고급": 222309, "중급": 219399, "초급": 193221, "보조": 159663 };
+/* 연도별 대가기준: RATES[연도] = { rules:{등급:최소연차}, daily:{등급:일당}, people:{이름:{years}} }
+   연차 → 등급(rules) → 표준인건비(daily) 순으로 산출. 조직도 페이지에서 매년 수정, 브라우저(로컬)에 저장 */
+const RATES_KEY = "ittang.design.rates.v2";
+const RATE_BASE_YEAR = REF.slice(0, 4);
+const GRADE_MIN_YEARS = { "보조": 0, "초급": 1, "중급": 3, "고급": 6, "특급": 9, "총괄": 12 };   /* 기본 연차 기준(관리자 수정 가능) */
+const newRateYear = () => ({ rules: { ...GRADE_MIN_YEARS }, daily: { ...GRADE_DAILY }, people: {} });
+function gradeByYears(years, rules){
+  const y = +years; if (isNaN(y)) return null;
+  return [...GRADES].reverse().reduce((g, k) => (rules[k] != null && y >= rules[k] ? k : g), null)
+    || [...GRADES].reverse().find(k => rules[k] != null) || "보조";
+}
+let RATES = null;
+try { const sv = JSON.parse(localStorage.getItem(RATES_KEY) || "null"); if (sv && typeof sv === "object" && Object.keys(sv).length) RATES = sv; } catch (e) {}
+if (!RATES){
+  /* 초기값: 기존 등급표(RATE_TABLE)를 연차 기준으로 이관 — 등급의 최소 연차를 연차로 채움 */
+  const y0 = newRateYear();
+  Object.entries(RATE_TABLE).forEach(([n, r]) => { y0.people[n] = { years: GRADE_MIN_YEARS[r.grade] ?? 1 }; });
+  RATES = { [RATE_BASE_YEAR]: y0 };
+  try { const old = JSON.parse(localStorage.getItem("ittang.design.rates.v1") || "null");   /* 이전 버전(등급 직접 지정) 이관 */
+    if (old && typeof old === "object") Object.entries(old).forEach(([yr, tbl]) => {
+      const t = RATES[yr] || (RATES[yr] = newRateYear());
+      Object.entries(tbl).forEach(([n, r]) => { t.people[n] = { years: GRADE_MIN_YEARS[r.grade] ?? 1 }; });
+    }); } catch (e) {}
+}
+Object.values(RATES).forEach(t => { t.rules = { ...GRADE_MIN_YEARS, ...(t.rules || {}) }; t.daily = { ...GRADE_DAILY, ...(t.daily || {}) }; t.people = t.people || {}; });
+const rateYears = () => Object.keys(RATES).sort();
+function saveRates(){ try { localStorage.setItem(RATES_KEY, JSON.stringify(RATES)); } catch (e) {} }
+/* 이름·날짜(연도) → { years, grade, daily }. 해당 연도가 없으면 가장 가까운 이전 연도, 그것도 없으면 최신 연도 */
+function rateOf(name, date){
+  const y = (date || REF).slice(0, 4);
+  const ys = rateYears();
+  const pick = ys.filter(k => k <= y).pop() || ys[ys.length - 1];
+  const tbl = RATES[pick];
+  const base = baseNameOf(name);
+  const key = Object.keys(tbl.people).find(k => k === base) || Object.keys(tbl.people).find(k => (name || "").includes(k));
+  if (!key) return { years: null, grade: "초급", daily: tbl.daily["초급"], year: pick, found: false };
+  const years = tbl.people[key].years;
+  const grade = gradeByYears(years, tbl.rules) || "초급";
+  return { years, grade, daily: tbl.daily[grade] || GRADE_DAILY[grade], year: pick, found: true };
+}
+const baseNameOf = s => (s || "").trim().split(/\s+/)[0];
+const hourlyOf = (name, date) => rateOf(name, date).daily / 8;       /* 시급 = 표준인건비(일당) / 8 */
+const gradeOf = (name, date) => { const r = rateOf(name, date); return r.found ? r.grade : r.grade + "(기본)"; };
+const WORK_KINDS = ["기획","구상","모델링/랜더링","제안서","도면","디자인수정","프로젝트회의","발주","현장지원","사이니지","기타"];
+/* 프로젝트 미선택 업무일지 보관용 가상 레코드 (목록·통계에는 포함되지 않고 스케줄 보드에만 표시) */
+const MISC = { id: "__MISC__", name: "미선택", workLogs: [], history: [], meetings: [], modifiedAt: "" };
 /* 스케줄 보드 기본 행: 디자인실 기획·디자인·설계·상품개발 파트의 재직 구성원 (MEMBERS 정의 뒤에서 채움) */
 const SCHED_DESIGNERS = [];
 const currentRoundOf = p => (p.revisions ? p.revisions.length : 0) + 1;
@@ -1090,7 +1159,7 @@ const roundHoursOf = (p, no) => {
 };
 function projectLaborCost(p){
   return (p.workLogs || []).filter(w => w.state === "done")
-    .reduce((a, w) => a + w.hours * hourlyOf(w.designer), 0);
+    .reduce((a, w) => a + w.hours * hourlyOf(w.designer, w.date), 0);
 }
 const POST_WON = new Set(["P7","P8","P9"]);
 const isWon = p => p.orderWon || POST_WON.has(p.status);
@@ -1145,17 +1214,14 @@ function riskOf(p){
   if (el > st.sla) return "amber";
   return null;
 }
-const fmtWon = n => n == null ? "—" : n.toLocaleString("ko-KR") + "원";
-function fmtCompact(n){
-  if (n == null) return "—";
-  if (n >= 1e8) { const v = Math.round(n / 1e7) / 10; return (Number.isInteger(v) ? v : v.toFixed(1)) + "억"; }
-  if (n >= 1e4) return Math.round(n / 1e4).toLocaleString("ko-KR") + "만";
-  return n.toLocaleString("ko-KR") + "원";
-}
+/* ---- 금액 표기: 내부 저장은 원, 화면·입력은 모두 백만원 단위로 통일 ---- */
+const MWON = 1e6;
+const toM = n => n == null ? null : Math.round(n / MWON * 10) / 10;              // 원 → 백만원(소수 1자리)
+const fmtMNum = n => { const v = toM(n); return v == null ? "—" : v.toLocaleString("ko-KR", { maximumFractionDigits: 1 }); };
+const fmtWon = n => n == null ? "—" : fmtMNum(n) + "백만원";
+const fmtCompact = fmtWon;
 function fmtConv(n){
   if (!n) return "";
-  if (n >= 1e8) { const v = Math.round(n / 1e7) / 10; return (Number.isInteger(v) ? v : v.toFixed(1)) + "억원"; }
-  if (n >= 1e4) return Math.round(n / 1e4).toLocaleString("ko-KR") + "만원";
   return n.toLocaleString("ko-KR") + "원";
 }
 const ownerList = p => [p.owners.sales, p.owners.design, p.owners.pm, p.owners.plan, p.owners.site, p.owners.eng, p.owners.cert]
@@ -1276,7 +1342,7 @@ SCHED_DESIGNERS.push(...MEMBERS.filter(m => m.active && ["기획파트","디자�
 const EMPLOYEES = MEMBERS.filter(m => m.active).map(mDisplay).sort((a, b) => a.localeCompare(b, "ko"));
 const EMPLOYEES_ALL = [...new Set([...EMPLOYEES, ...DATA.flatMap(ownerList)])].sort((a, b) => a.localeCompare(b, "ko"));
 if (new URLSearchParams(location.search).has("embed")) document.body.classList.add("embed");
-function normalizeProject(p){
+function prepareProject(p){
   if (!p.history) p.history = [];
   if (!p.meetings) p.meetings = [];
   if (p.owners.cert === undefined) p.owners.cert = null;
@@ -1288,6 +1354,27 @@ function normalizeProject(p){
   if (!p.quoteTypes) p.quoteTypes = { est: false, exec: false, design: false };
   if (!p.engTypes) p.engTypes = { basic: false, detail: false, prod: false };
   if (p.engRequest === undefined) p.engRequest = "";
+  if (p.designProposalLink === undefined) p.designProposalLink = "";
+  if (p.designExtraNote === undefined) p.designExtraNote = "";
+  if (p.engExtraNote === undefined) p.engExtraNote = "";
+  if (p.quoteExtraNote === undefined) p.quoteExtraNote = "";
+  /* 견적 요청 차수: quoteRounds[0]은 기존 schedule.quoteReq/quoteDone·quoteRequest·quoteTypes를 이관 */
+  if (!Array.isArray(p.quoteRounds)) p.quoteRounds = [];
+  if (!p.quoteRounds.length){
+    const sc = p.schedule || {};
+    p.quoteRounds.push({ no: 1, date: sc.quoteReq || "", due: "", done: sc.quoteDone || "", note: p.quoteRequest || "", link: "", files: [],
+      types: { ...(p.quoteTypes || { est: false, exec: false, design: false }) } });
+  }
+  p.quoteRounds.forEach((r, i) => { r.no = i + 1; ["date","due","done","note","link"].forEach(k => { if (r[k] === undefined) r[k] = ""; }); if (!r.types) r.types = { est: false, exec: false, design: false }; if (!r.files) r.files = []; });
+  /* 설계 요청 차수: engRounds[0]은 기존 schedule.engReq/engDone·engRequest·engTypes를 이관 */
+  if (!Array.isArray(p.engRounds)) p.engRounds = [];
+  if (!p.engRounds.length){
+    const sc = p.schedule || {};
+    p.engRounds.push({ no: 1, date: sc.engReq || "", due: "", done: sc.engDone || "", note: p.engRequest || "", link: "",
+      types: { ...(p.engTypes || { basic: false, detail: false, prod: false }) } });
+  }
+  p.engRounds.forEach((r, i) => { r.no = i + 1; ["date","due","done","note","link"].forEach(k => { if (r[k] === undefined) r[k] = ""; }); if (!r.types) r.types = { basic: false, detail: false, prod: false }; });
+  p.revisions.forEach(r => { if (r.link === undefined) r.link = ""; if (r.note === undefined) r.note = ""; });
   if (p.folderPath === undefined) p.folderPath = "";
   if (p.designFolder === undefined) p.designFolder = "";
   if (!p.designFiles) p.designFiles = [];
@@ -1301,13 +1388,13 @@ function normalizeProject(p){
   }
   // 구 단계 체계 → 새 평면 체계 이관 (원본 상태값은 worksStatus에 보존)
   const MIG = { S0:"P0", D0:"P0", S21:"P1", D1:"P1", S22:"P2", D2:"P2",
-    S31:"P3", S32:"P3", D3:"P3", S4:"P4", D4:"P4", SW:"P5", D5:"P5",
+    S31:"P3", S32:"P3", D3:"P3", S4:"P4", D4:"P4", S41:"P9", SW:"P5", D5:"P5",
     SR:"P6", D6:"P6", W1:"P6", W2:"P7", W3:"P8",
     S61:"P8", S62:"P8", W4:"P8", S63:"P8", C6:"P8", C62:"P8", S71:"P8", S72:"P8", W5:"P8" };
   if (p.status === "S5"){ p.status = "P5"; p.orderWon = true; }
   else if (MIG[p.status]) p.status = MIG[p.status];
 }
-DATA.forEach(normalizeProject);
+DATA.forEach(prepareProject);
 /* ---- 변경 이력 ---- */
 function nowStr(){
   const d = new Date();
@@ -1349,9 +1436,16 @@ const Store = (() => {
   const local = {
     init(){
       try { overlay = JSON.parse(localStorage.getItem(OVERLAY_KEY) || "null") || overlay; } catch (e) {}
+      /* 현장코드 접두어 변경(AT- → IT-): 이 브라우저에 저장된 변경분의 코드도 함께 이관 */
+      const mig = id => typeof id === "string" ? id.replace(/^AT-(\d{2}-\d{4})$/, "IT-$1") : id;
+      let migrated = false;
+      Object.keys(overlay.upserts || {}).forEach(k => { const nk = mig(k); const v = overlay.upserts[k]; if (v && v.id) v.id = mig(v.id); if (nk !== k){ overlay.upserts[nk] = v; delete overlay.upserts[k]; migrated = true; } });
+      overlay.deleted = (overlay.deleted || []).map(mig);
+      if (migrated) try { localStorage.setItem(OVERLAY_KEY, JSON.stringify(overlay)); } catch (e) {}
       const del = new Set(overlay.deleted || []);
       for (let i = DATA.length - 1; i >= 0; i--) if (del.has(DATA[i].id)) DATA.splice(i, 1);
       Object.values(overlay.upserts || {}).forEach(saved => {
+        if (saved.id === MISC.id){ MISC.workLogs = saved.workLogs || []; MISC.history = saved.history || []; return; }
         normalizeProject(saved);
         const i = DATA.findIndex(p => p.id === saved.id);
         if (i > -1) DATA[i] = saved; else DATA.push(saved);
@@ -1399,7 +1493,12 @@ const Store = (() => {
       this.loadErrors = [m.error && ("members: " + m.error.message), p.error && ("projects: " + p.error.message), l.error && ("deals: " + l.error.message)].filter(Boolean);
       if (m.error) throw m.error;
       MEMBERS.splice(0, MEMBERS.length, ...m.data.map(r => mem(r.id, r.name, r.unit, r.role, r.title, { email: r.email, phone: r.phone, perms: r.perms || {}, active: r.active !== false, aliases: r.aliases || [] })));
-      if (!p.error){ DATA.splice(0, DATA.length, ...(p.data || []).map(r => r.data).filter(Boolean)); DATA.forEach(normalizeProject); }
+      if (!p.error){
+        const miscRow = (p.data || []).find(r => r.id === MISC.id);
+        if (miscRow){ MISC.workLogs = miscRow.data.workLogs || []; MISC.history = miscRow.data.history || []; }
+        DATA.splice(0, DATA.length, ...(p.data || []).filter(r => r.id !== MISC.id).map(r => r.data).filter(Boolean));
+        DATA.forEach(prepareProject); DATA.forEach(normalizeProject);
+      }
       if (l.error) l.data = [];
       CRM_LEADS.splice(0, CRM_LEADS.length, ...l.data.map(r => ({ ...r, designDetail: r.design_detail || r.designDetail || null, consultDate: r.consult_date || r.consultDate, designOwner: r.design_owner || r.designOwner, planOwner: r.plan_owner || r.planOwner, pmId: r.pm_id || r.pmId })));
     },
@@ -1462,10 +1561,44 @@ function renderRoleUi(){
 }
 let view = "list";
 /* 대시보드 · 디자이너별 작업 현황 옵션 */
-let dashDesignMetric = "count";              // count = 진행 현장수, hours = 작업시간
+let dashDesignMetric = "count";              // count = 진행 현장수, hours = 작업시간, budget = 프로젝트 예산
 let dashFrom = "", dashTo = "";              // 기간(YYYY-MM-DD). 빈값이면 전체
-let dashDesigners = [];                       // 선택된 디자이너(빈 배열이면 전체)
+let dashDesigners = [];                       // 작업 현황 카드 선택 디자이너(빈 배열이면 전체)
 let dashInputDesigners = [];                  // 투입 현황 카드 선택 디자이너(빈 배열이면 전체)
+let dashWonDesigners = [];                    // 수주실적 카드 선택 디자이너
+let dashNames = { work: [], input: [], won: [], cost: [] };   // 카드별 드롭다운 후보 이름(렌더 시 채움)
+let dashCostDesigners = [];                   // 디자인 비용 카드 선택 디자이너
+/* 카드별 디자이너 드롭다운(다중 선택) — 선택값은 설정으로 저장되어 화면 이동·새로고침 후에도 유지 */
+const DASH_DES_SETS = {
+  work:  { get: () => dashDesigners,      set: v => { dashDesigners = v; },      label: "작업 현황" },
+  input: { get: () => dashInputDesigners, set: v => { dashInputDesigners = v; }, label: "투입 현황" },
+  won:   { get: () => dashWonDesigners,   set: v => { dashWonDesigners = v; },   label: "수주실적" },
+  cost:  { get: () => dashCostDesigners,  set: v => { dashCostDesigners = v; },  label: "디자인 비용" },
+};
+function desDropdownHtml(key, names){
+  const sel = DASH_DES_SETS[key].get().filter(n => names.includes(n));
+  const txt = !sel.length ? "전체" : sel.length <= 3 ? sel.join(", ") : `${sel.slice(0, 2).join(", ")} 외 ${sel.length - 2}명`;
+  return `<span class="dchips"><span class="dchips-lab">디자이너</span>
+    <button class="btn-cond desdd${sel.length ? " act" : ""}" data-desmenu="${key}" title="${esc(sel.join(", ") || "전체")}">${esc(txt)} <span class="caret">▾</span></button>
+    ${sel.length ? `<button class="dchip" data-desclear="${key}" title="선택 해제">✕ 전체</button>` : ""}</span>`;
+}
+function openDesDropdown(key, names, x, y){
+  closeCondMenu();
+  const cur = DASH_DES_SETS[key].get();
+  const mm = document.createElement("div");
+  mm.className = "condmenu"; mm.id = "condMenu";
+  mm.innerHTML = `<span class="cm-title">${esc(DASH_DES_SETS[key].label)} — 디자이너 선택 (여러 명 가능)</span><div class="cm-list">` +
+    names.map(nm => { const m = memberByName(nm); return `<label class="cm-opt"><input type="checkbox" value="${esc(nm)}"${cur.includes(nm) ? " checked" : ""}>${esc(nm)} <span style="color:var(--ink3);font-size:11px">${esc(m ? m.title : gradeOf(nm))}</span></label>`; }).join("") +
+    `</div><div class="cm-foot"><button class="btn-ghost" id="cmAll">전체 해제</button><span style="flex:1"></span><button class="btn-ghost" id="cmCancel">취소</button><button class="btn-submit" id="cmApply">적용</button></div>`;
+  placeCondMenu(mm, x, y);
+  document.addEventListener("mousedown", cmOutside);
+  mm.querySelector("#cmCancel").onclick = closeCondMenu;
+  mm.querySelector("#cmAll").onclick = () => mm.querySelectorAll("input").forEach(i => { i.checked = false; });
+  mm.querySelector("#cmApply").onclick = () => {
+    DASH_DES_SETS[key].set([...mm.querySelectorAll("input:checked")].map(i => i.value));
+    closeCondMenu(); saveSettings(); render();
+  };
+}
 /* 간트차트 상태 */
 /* 간트 시작·완료 기준으로 선택 가능한 날짜 필드 (키, 라벨, top=프로젝트 최상위 필드 여부) */
 const GANTT_FIELDS = [
@@ -1545,14 +1678,15 @@ const FILTER_FIELDS = [
   { key: "mine",    label: "내 프로젝트", opts: () => [["y", "내 담당 프로젝트만"]] },
   { key: "stage",   label: "단계",     opts: () => Object.entries(STATES).map(([v, st]) => [v, st.name]) },
   { key: "type",    label: "유형",     opts: () => [...new Set(DATA.map(p => p.type))].sort().map(v => [v, v]) },
-  { key: "sales",   label: "영업담당",   opts: () => EMPLOYEES_ALL.map(n => [n, n]) },
-  { key: "design",  label: "디자인담당", opts: () => EMPLOYEES_ALL.map(n => [n, n]) },
-  { key: "eng",     label: "설계담당",   opts: () => EMPLOYEES_ALL.map(n => [n, n]) },
-  { key: "owner",   label: "담당자(전체)", opts: () => EMPLOYEES_ALL.map(n => [n, n]) },
+  /* 담당자 조건은 조직도의 재직 구성원만 표시 (과거 담당자는 텍스트 검색으로) */
+  { key: "sales",   label: "영업담당",   opts: () => EMPLOYEES.map(n => [n, n]) },
+  { key: "design",  label: "디자인담당", opts: () => EMPLOYEES.map(n => [n, n]) },
+  { key: "eng",     label: "설계담당",   opts: () => EMPLOYEES.map(n => [n, n]) },
+  { key: "owner",   label: "담당자(전체)", opts: () => EMPLOYEES.map(n => [n, n]) },
   { key: "risk",    label: "위험",     opts: () => [["amber", "주의"], ["red", "정체"]] },
   { key: "won",     label: "수주완료", opts: () => [["y", "예"], ["n", "아니오"]] },
   { key: "urgency", label: "긴급도",   opts: () => [["일반", "일반"], ["긴급", "긴급"], ["초긴급", "초긴급"]] },
-  { key: "budget",  label: "예산",     opts: () => [["0-50", "~5천만"], ["50-100", "5천만~1억"], ["100-300", "1억~3억"], ["300-", "3억~"], ["none", "미입력"]] },
+  { key: "budget",  label: "예산",     opts: () => [["0-50", "~50백만"], ["50-100", "50~100백만"], ["100-300", "100~300백만"], ["300-", "300백만~"], ["none", "미입력"]] },
 ];
 function condMatch(p, c){
   const vs = c.values;
@@ -1578,23 +1712,61 @@ function condMatch(p, c){
 }
 
 /* ================= KPI ================= */
+const wonSumOf = (scope, type) => scope.filter(p => isWon(p) && p.type === type).reduce((s, p) => s + (p.amount || 0), 0);
+const wonCntOf = (scope, type) => scope.filter(p => isWon(p) && p.type === type).length;
+/* 상단 지표 적용 기간(등록일 기준). 빈값이면 전체 · 설정으로 저장 */
+let kpiFrom = "", kpiTo = "";
+const inKpiPeriod = p => (!kpiFrom || (p.registeredAt || "") >= kpiFrom) && (!kpiTo || (p.registeredAt || "") <= kpiTo);
+function renderKpiPeriod(){
+  const el = $("#kpiPeriod"); if (!el) return;
+  const on = !!(kpiFrom || kpiTo);
+  el.innerHTML = `<span class="kp-lab">적용 기간</span><span class="dim2">등록일 기준</span>
+    <input type="date" id="kpFrom" value="${esc(kpiFrom)}" max="${esc(kpiTo || "")}"><span>~</span><input type="date" id="kpTo" value="${esc(kpiTo)}" min="${esc(kpiFrom || "")}">
+    <button class="qbtn" data-kprange="1">최근 1개월</button><button class="qbtn" data-kprange="3">최근 3개월</button>
+    <button class="qbtn" data-kprange="6">최근 6개월</button><button class="qbtn" data-kprange="y">올해</button>
+    <button class="qbtn${on ? "" : " on"}" data-kprange="0">전체</button>
+    ${on ? `<span class="kp-note">${esc(kpiFrom || "…")} ~ ${esc(kpiTo || "…")} 등록 프로젝트 기준</span>` : ""}`;
+}
 function renderKpis(){
-  const scope = DATA.filter(canAccess);
+  renderKpiPeriod();
+  const scope = DATA.filter(p => canAccess(p) && inKpiPeriod(p));
   const active = scope.filter(p => !TERMINAL.has(p.status));
   const review = scope.filter(p => p.status === "P4");
   const avgEl = review.length ? Math.round(review.reduce((s, p) => s + elapsedOf(p), 0) / review.length) : 0;
   const over3 = scope.filter(p => p.revisions.length > 3).length;
-  const wonSum = scope.filter(isWon).reduce((s, p) => s + (p.amount || 0), 0);
-  const reds = scope.filter(p => riskOf(p) === "red").length;
+  const hold = scope.filter(p => p.status === "HOLD").length;
+  const lost = scope.filter(p => p.status === "LOST").length;
+  const amt = type => `<div class="num">${fmtMNum(wonSumOf(scope, type))}<small>백만원</small></div>`;
   $("#kpis").innerHTML = `
-    <div class="kpi" data-kpi="active"><div class="num">${active.length}</div><div class="lab">진행 중 프로젝트</div><div class="sub">종결 제외 전체</div></div>
-    <div class="kpi warn-tint" data-kpi="review"><div class="num">${review.length}<small> 건 · <span class="wv">평균 ${avgEl}일</span></small></div><div class="lab">협의중 (S4)</div><div class="sub">제안 후 수주 확정 전 구간</div></div>
-    <div class="kpi" data-kpi="over3"><div class="num">${over3}</div><div class="lab">수정 3차 초과</div><div class="sub">담당자 협의 대상</div></div>
-    <div class="kpi" data-kpi="won"><div class="num">${fmtCompact(wonSum)}<small>원</small></div><div class="lab">수주완료 금액</div><div class="sub">수주완료 체크 + 생산·공사 단계</div></div>
-    <div class="kpi danger" data-kpi="red"><div class="num">${reds}</div><div class="lab">장기 정체</div><div class="sub">SLA 2배 초과</div></div>`;
+    <div class="kpi t-peach" data-kpi="active"><div class="num">${active.length}</div><div class="lab">진행중 프로젝트</div><div class="sub">종결 제외 전체</div></div>
+    <div class="kpi t-peach warn-tint" data-kpi="review"><div class="num">${review.length}<small> 건</small></div><div class="lab">협의중</div><div class="sub">평균 <span class="wv">${avgEl}일</span> 경과 · 수주 확정 전</div></div>
+    <div class="kpi t-peach" data-kpi="over3"><div class="num">${over3}</div><div class="lab">제안 3차 초과</div><div class="sub">담당자 협의 대상</div></div>
+    <div class="kpi t-blue" data-kpi="wonSpace">${amt("공간사업")}<div class="lab">공간프로젝트 수주금액</div><div class="sub">수주완료 ${wonCntOf(scope, "공간사업")}건</div></div>
+    <div class="kpi t-blue" data-kpi="wonEdu">${amt("에듀테인")}<div class="lab">에듀테인 수주금액</div><div class="sub">수주완료 ${wonCntOf(scope, "에듀테인")}건</div></div>
+    <div class="kpi t-blue" data-kpi="wonOut">${amt("실외놀이")}<div class="lab">실외 수주금액</div><div class="sub">수주완료 ${wonCntOf(scope, "실외놀이")}건</div></div>
+    <div class="kpi t-gray" data-kpi="hold"><div class="num">${hold}</div><div class="lab">보류</div><div class="sub">보류 상태 프로젝트</div></div>
+    <div class="kpi t-gray" data-kpi="lost"><div class="num">${lost}</div><div class="lab">실패</div><div class="sub">수주실패 프로젝트</div></div>`;
   $("#kpis").querySelectorAll("[data-kpi]").forEach(el =>
     el.addEventListener("click", () => setKpiFilter(el.dataset.kpi)));
 }
+(function(){
+  const box = $("#kpiPeriod"); if (!box) return;
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  box.addEventListener("click", e => {
+    const b = e.target.closest("[data-kprange]"); if (!b) return;
+    const v = b.dataset.kprange, ref = new Date(REF + "T00:00:00");
+    if (v === "0"){ kpiFrom = ""; kpiTo = ""; }
+    else if (v === "y"){ kpiFrom = `${ref.getFullYear()}-01-01`; kpiTo = REF; }
+    else { kpiFrom = iso(new Date(ref.getFullYear(), ref.getMonth() - (+v - 1), 1)); kpiTo = REF; }
+    saveSettings(); render();
+  });
+  box.addEventListener("change", e => {
+    if (e.target.id === "kpFrom") kpiFrom = e.target.value;
+    if (e.target.id === "kpTo") kpiTo = e.target.value;
+    if (kpiFrom && kpiTo && kpiFrom > kpiTo){ const t = kpiFrom; kpiFrom = kpiTo; kpiTo = t; }
+    saveSettings(); render();
+  });
+})();
 
 /* ================= 필터링 ================= */
 const KPI_FILTERS = {
@@ -1602,6 +1774,11 @@ const KPI_FILTERS = {
   review: { label: "협의중 (S4)", test: p => p.status === "P4" },
   over3:  { label: "수정 3차 초과", test: p => p.revisions.length > 3 },
   won:    { label: "수주완료", test: p => isWon(p) },
+  wonSpace: { label: "공간프로젝트 수주완료", test: p => isWon(p) && p.type === "공간사업" },
+  wonEdu:   { label: "에듀테인 수주완료", test: p => isWon(p) && p.type === "에듀테인" },
+  wonOut:   { label: "실외 수주완료", test: p => isWon(p) && p.type === "실외놀이" },
+  hold:   { label: "보류", test: p => p.status === "HOLD" },
+  lost:   { label: "수주실패", test: p => p.status === "LOST" },
   red:    { label: "장기 정체 (SLA 2배 초과)", test: p => riskOf(p) === "red" },
 };
 let kpiFilter = null; /* KPI_FILTERS 키 */
@@ -1611,11 +1788,17 @@ function setKpiFilter(key){
   setView("list"); /* 해당 리스트 보기 */
 }
 function filtered(){
-  const q = filters.q.trim().toLowerCase();
+  /* 텍스트 검색: 프로젝트명·유형·단계·코드·담당자(+발주처) — 공백으로 나눈 단어를 모두 포함해야 일치 */
+  const terms = filters.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   return DATA.filter(p => {
     if (!canAccess(p)) return false;
-    if (kpiFilter && !KPI_FILTERS[kpiFilter].test(p)) return false;
-    if (q && ![p.name, p.id, p.client].some(v => (v || "").toLowerCase().includes(q))) return false;
+    if (kpiFilter && (!KPI_FILTERS[kpiFilter].test(p) || !inKpiPeriod(p))) return false;
+    if (terms.length){
+      const st = STATES[p.status] || {};
+      const hay = [p.name, p.type, st.name, st.grp, p.id, p.legacyCode, p.client, ...ownerList(p)]
+        .map(v => (v || "").toString().toLowerCase()).join("|");
+      if (!terms.every(t => hay.includes(t))) return false;
+    }
     return filters.conds.every(c => condMatch(p, c));
   });
 }
@@ -1811,16 +1994,16 @@ function filterCtrlHtml(col){
   switch (f.kind){
     case "stage":   return sel(Object.entries(STATES).map(([v, st]) => `<option value="${v}">${esc(st.name)}</option>`).join(""));
     case "typeSel": return sel([...new Set(DATA.map(p => p.type))].sort().map(t2 => `<option>${esc(t2)}</option>`).join(""));
-    case "emp":     return sel(EMPLOYEES_ALL.map(n => `<option>${esc(n)}</option>`).join(""));
+    case "emp":     return sel(EMPLOYEES.map(n => `<option>${esc(n)}</option>`).join(""));
     case "sector":  return sel(`<option value="민간">민간</option><option value="공공">공공</option><option value="__none">미지정</option>`);
     case "won":     return sel(`<option value="y">예</option><option value="n">아니오</option>`);
     case "urgency": return sel(`<option>일반</option><option>긴급</option><option>초긴급</option>`);
-    case "budget":  return sel(`<option value="0-50">~5천만</option><option value="50-100">5천만~1억</option><option value="100-300">1억~3억</option><option value="300-">3억~</option><option value="none">미입력</option>`);
+    case "budget":  return sel(`<option value="0-50">~50백만</option><option value="50-100">50~100백만</option><option value="100-300">100~300백만</option><option value="300-">300백만~</option><option value="none">미입력</option>`);
     case "rev":     return sel(`<option value="0">없음</option><option value="1">1차 이상</option><option value="2">2차 이상</option><option value="3">3차 이상</option><option value="4">4차 이상</option>`);
     case "elapsed": return sel(`<option value="amber">주의 이상</option><option value="red">정체만</option><option value="30">30일 이상</option><option value="60">60일 이상</option>`);
     case "search":  return `<th><input type="search" id="${id}" placeholder="검색" aria-label="${esc(col.label)} 필터"></th>`;
     case "searchClient": return `<th><input type="search" id="${id}" placeholder="검색" aria-label="${esc(col.label)} 필터"></th>`;
-    case "searchCode": return `<th><input type="search" id="${id}" placeholder="AT-.." aria-label="${esc(col.label)} 필터"></th>`;
+    case "searchCode": return `<th><input type="search" id="${id}" placeholder="IT-.." aria-label="${esc(col.label)} 필터"></th>`;
     default: return "<th></th>";
   }
 }
@@ -2083,6 +2266,7 @@ function canEditLog(designer){
 function allWorkLogs(){
   const out = [];
   DATA.forEach(p => (p.workLogs || []).forEach(w => out.push({ ...w, pid: p.id, pname: p.name })));
+  (MISC.workLogs || []).forEach(w => out.push({ ...w, pid: MISC.id, pname: MISC.name }));
   return out;
 }
 let schedDesigners = [];  /* 스케줄 보드에서 선택된 디자이너(빈 배열이면 전체) */
@@ -2141,11 +2325,16 @@ function renderSched(){
   const DOW = ["월","화","수","목","금","토","일"];
   const planSum = logs.filter(w => w.state === "plan").reduce((a, w) => a + w.hours, 0);
   const doneSum = logs.filter(w => w.state === "done").reduce((a, w) => a + w.hours, 0);
-  const costSum = logs.filter(w => w.state === "done").reduce((a, w) => a + w.hours * hourlyOf(w.designer), 0);
+  const costSum = logs.filter(w => w.state === "done").reduce((a, w) => a + w.hours * hourlyOf(w.designer, w.date), 0);
 
   const head = days.map((d2, i) =>
     `<th class="${d2 === REF ? "today" : ""}"><span class="dw">${DOW[i]}</span><span class="dd mono">${d2.slice(5)}</span></th>`).join("");
-  const body = designers.map(nm => {
+  /* 디자이너 행을 조직도 파트별로 묶어 표시 (기획→디자인→설계→상품개발→기타) */
+  const PART_ORDER = ["기획파트","디자인파트","설계파트","상품개발파트"];
+  const partOf = nm => { const m = memberByName(nm); return m && PART_ORDER.includes(m.unit) ? m.unit : "기타"; };
+  const partLabel = k => k === "기타" ? "기타 · 과거 담당" : ((ORG_UNITS.find(u => u.key === k) || {}).label || k);
+  const grouped = [...PART_ORDER, "기타"].map(k => ({ k, names: designers.filter(nm => partOf(nm) === k) })).filter(g => g.names.length);
+  const rowOf = nm => {
     const myBands = (bands[nm] || []).sort((a, b) => a.req.localeCompare(b.req)).slice(0, 3);
     myBands.forEach((b, i) => { b.lane = i; });
     const cells = days.map(d2 => {
@@ -2164,8 +2353,8 @@ function renderSched(){
         const late = due && w.date > due;
         const short = w.pname.length > 11 ? w.pname.slice(0, 11) + "…" : w.pname;
         return `<button class="wchip ${w.state}${late ? " late" : ""}" data-wl="${esc(w.id)}" data-wlpid="${esc(w.pid)}" draggable="${canEditLog(nm)}"
-          title="${esc(w.pid)} ${esc(w.pname)}\n${w.round || 1}차 ${esc(w.kind)} · ${w.hours}h · ${w.state === "plan" ? "계획" : "실적"}${late ? "\n⚠ 완료요청일(" + esc(due) + ") 이후 작업" : ""}${w.note ? "\n" + esc(w.note) : ""}">
-          <i></i><b>${w.hours}h</b> ${esc(short)}<small>${w.round || 1}차·${esc(w.kind)}</small></button>`;
+          title="${w.pid === MISC.id ? "미선택" : esc(w.pid)} ${esc(w.pname)}\n${w.pid === MISC.id ? "" : (w.round || 1) + "차 "} ${esc(w.kind)} · ${w.hours}h · ${w.state === "plan" ? "계획" : "실적"}${late ? "\n⚠ 완료요청일(" + esc(due) + ") 이후 작업" : ""}${w.note ? "\n" + esc(w.note) : ""}">
+          <i></i><b>${w.hours}h</b> ${esc(short)}<small>${w.pid === MISC.id ? "" : (w.round || 1) + "차·"}${esc(w.kind)}</small></button>`;
       }).join("");
       const badges = (dueBadges[nm + "|" + d2] || []).map(b =>
         `<button class="duebadge" data-dueopen="${esc(b.pid)}" title="${esc(b.pid)} ${esc(b.name)} — ${b.no}차 완료요청일 · 클릭하면 프로젝트 개요로 이동">● ${esc(b.name.slice(0, 9))}${b.name.length > 9 ? "…" : ""} ${b.no}차 마감</button>`).join("");
@@ -2174,9 +2363,12 @@ function renderSched(){
     }).join("");
     const wk = logs.filter(w => w.designer === nm);
     const wkSum = wk.reduce((a, w) => a + w.hours, 0);
-    return `<tr><th class="snm"><b>${esc(nm)}</b><span class="sgrade">${esc(gradeOf(nm))}</span>
-      <span class="swk mono">${wkSum ? wkSum + "h" : ""}</span></th>${cells}</tr>`;
-  }).join("");
+    const m = memberByName(nm);
+    return `<tr><th class="snm"><div class="org-card sc-card${m && memberIsAdmin(m) ? " lead" : ""}" title="${esc(m ? m.title : gradeOf(nm))} · 이번 주 ${wkSum}h">
+        <span class="oc-av">${esc(nm.slice(0, 1))}</span>
+        <span class="oc-nm">${esc(nm)}</span>${wkSum ? `<span class="sc-wk mono">${wkSum}h</span>` : ""}</div></th>${cells}</tr>`;
+  };
+  const body = grouped.map(g => `<tr class="sgrp"><th colspan="8"><span class="ou-name">${esc(partLabel(g.k))}</span><span class="dim2" style="margin-left:8px">${g.names.length}명</span></th></tr>${g.names.map(rowOf).join("")}`).join("");
 
   $("#schedWrap").innerHTML = `
     <div class="sched-bar">
@@ -2217,7 +2409,7 @@ function renderSched(){
 
 /* ---- 업무일지 등록/수정 모달 ---- */
 function findLog(pid, wlId){
-  const p = DATA.find(x => x.id === pid);
+  const p = pid === MISC.id ? MISC : DATA.find(x => x.id === pid);
   const w = p && p.workLogs.find(x => x.id === wlId);
   return { p, w };
 }
@@ -2228,7 +2420,8 @@ function openWlModal(opt){ /* opt: {date, designer} 신규 | {pid, wlId} 수정 
   const designer = w ? w.designer : opt.designer;
   if (!canEditLog(designer)){ showToast("본인 일정 또는 관리자만 등록·수정할 수 있습니다"); return; }
   const actives = DATA.filter(p => !TERMINAL.has(p.status));
-  const projOpts = actives.map(p =>
+  const miscOpt = `<option value="${MISC.id}"${w && w2Pid() === MISC.id ? " selected" : ""}>미선택 (프로젝트 없음)</option>`;
+  const projOpts = miscOpt + actives.map(p =>
     `<option value="${esc(p.id)}"${w && w2Pid() === p.id ? " selected" : ""}>${esc(p.id)} ${esc(p.name.slice(0, 26))}</option>`).join("");
   function w2Pid(){ return editing ? editing.p.id : ""; }
   const kindOpts = WORK_KINDS.map(k => `<option${w && w.kind === k ? " selected" : ""}>${k}</option>`).join("");
@@ -2241,11 +2434,11 @@ function openWlModal(opt){ /* opt: {date, designer} 신규 | {pid, wlId} 수정 
       <label>날짜<input type="date" id="wlDate" value="${esc(w ? w.date : opt.date)}"></label>
       <label>시간(h)<input type="number" id="wlHours" min="0.5" max="24" step="0.5" value="${w ? w.hours : 4}"></label>
       <label class="wlfull">프로젝트${w ? "" : `<input type="search" id="wlPq" placeholder="프로젝트명 · 코드 · 발주처로 검색" autocomplete="off">`}<select id="wlPid" ${w ? "disabled" : ""}>
-        ${w ? `<option value="${esc(editing.p.id)}" selected>${esc(editing.p.id)} ${esc(editing.p.name.slice(0, 30))}</option>` : projOpts}
+        ${w ? `<option value="${esc(editing.p.id)}" selected>${editing.p === MISC ? "미선택 (프로젝트 없음)" : esc(editing.p.id) + " " + esc(editing.p.name.slice(0, 30))}</option>` : projOpts}
       </select><span class="wl-pq-cnt" id="wlPqCnt" style="font-size:11px;color:var(--ink3)"></span></label>
       <label>차수<select id="wlRound"></select></label>
       <label>작업구분<select id="wlKind">${kindOpts}</select></label>
-      <label class="wlfull">메모<input type="text" id="wlNote" value="${w ? esc(w.note || "") : ""}" placeholder="특이사항 (선택)"></label>
+      <label class="wlfull">작업내용<input type="text" id="wlNote" value="${w ? esc(w.note || "") : ""}" placeholder="작업 내용 (선택)"></label>
     </div>
     <div class="wl-btns">
       ${w ? `<button class="btn-ghost danger" id="wlDel">삭제</button>` : ""}
@@ -2259,6 +2452,7 @@ function openWlModal(opt){ /* opt: {date, designer} 신규 | {pid, wlId} 수정 
   m.addEventListener("click", e => { if (e.target === m) closeWlModal(); });
   const fillRounds = () => {
     const pid = m.querySelector("#wlPid").value;
+    if (pid === MISC.id){ m.querySelector("#wlRound").innerHTML = `<option value="1">—</option>`; return; }
     const p2 = DATA.find(x => x.id === pid);
     const cur = p2 ? currentRoundOf(p2) : 1;
     const selNo = w && w.round ? w.round : cur;
@@ -2279,10 +2473,10 @@ function openWlModal(opt){ /* opt: {date, designer} 신규 | {pid, wlId} 수정 
         const hay = norm(p.id) + "|" + norm(p.legacyCode) + "|" + norm(p.name) + "|" + norm(p.client) + "|" + norm(p.address);
         return terms.every(t => hay.includes(t));
       }) : actives;
-      sel.innerHTML = hits.length
+      sel.innerHTML = (terms.length ? "" : `<option value="${MISC.id}"${prev === MISC.id ? " selected" : ""}>미선택 (프로젝트 없음)</option>`) + (hits.length
         ? hits.map(p => `<option value="${esc(p.id)}"${p.id === prev ? " selected" : ""}>${esc(p.id)} ${esc(p.name.slice(0, 26))}</option>`).join("")
-        : `<option value="" disabled selected>검색 결과 없음</option>`;
-      if (hits.length && !hits.some(p => p.id === prev)) sel.selectedIndex = 0;
+        : `<option value="" disabled${terms.length ? " selected" : ""}>검색 결과 없음</option>`);
+      if (hits.length && !hits.some(p => p.id === prev) && prev !== MISC.id) sel.value = hits[0].id;
       m.querySelector("#wlPqCnt").textContent = terms.length ? `${hits.length}건 일치${hits.length ? " — 아래에서 선택" : ""}` : "";
       fillRounds();
     };
@@ -2306,7 +2500,7 @@ function openWlModal(opt){ /* opt: {date, designer} 신규 | {pid, wlId} 수정 
       editing.p.modifiedAt = REF;
       logHist(editing.p, "업무일지", `${designer} ${v.date} ${v.round}차 ${v.kind} ${v.hours}h — ${state === "plan" ? "계획 수정" : "실적 확정"}`);
     } else {
-      const p = DATA.find(x => x.id === v.pid);
+      const p = v.pid === MISC.id ? MISC : DATA.find(x => x.id === v.pid);
       if (!p) return;
       p.workLogs.push({ id: "WL" + Date.now() + Math.floor(Math.random() * 1e3),
         date: v.date, designer, kind: v.kind, hours: v.hours, note: v.note, round: v.round, state });
@@ -2387,10 +2581,13 @@ function renderDash(rows){
   const lost = rows.filter(p => p.status === "LOST");
   const pipeAmt = act.filter(p => !isWon(p)).reduce((a, p) => a + (p.amount || 0), 0);
   const wonAmt = won.reduce((a, p) => a + (p.amount || 0), 0);
-  const winRate = (won.length + lost.length) ? Math.round(won.length / (won.length + lost.length) * 100) : null;
+  const actAmt = act.reduce((a, p) => a + (p.amount || 0), 0);
+  const lostAmt = lost.reduce((a, p) => a + (p.amount || 0), 0);
+  const totAmt = rows.reduce((a, p) => a + (p.amount || 0), 0);
+  const pct = (n, d) => d ? (Math.round(n / d * 1000) / 10).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "%" : "—";
   const reds = act.filter(p => riskOf(p) === "red");
   const bar = (nm, val, max, col, label) => `<div class="hbar"><span class="nm" title="${esc(nm)}">${esc(nm)}</span>
-    <span class="tr"><i style="width:${max ? Math.max(2, Math.round(val / max * 100)) : 0}%;background:${col}"></i></span>
+    <span class="tr"><i style="width:${max && val ? Math.max(2, Math.round(val / max * 100)) : 0}%;background:${col}"></i></span>
     <span class="vv">${label}</span></div>`;
 
   /* 영업 기회: 단계별 건수·금액 */
@@ -2447,11 +2644,7 @@ function renderDash(rows){
     bar(nm, v.work + v.hold, dMax, "var(--st-design)", `작업중 ${v.work} · 담당 ${v.work + v.hold} · 수정 ${v.rev}차`)).join("")
     : `<div class="dempty">선택한 디자이너의 담당 건 없음</div>`;
   const unassigned = act.filter(p => DESIGN_ACTIVE.has(p.status) && !p.owners.design).length;
-  const dInpChips = `<div class="dchips">
-      <span class="dchips-lab">디자이너</span>
-      <button class="dchip${dInpSel.length ? "" : " on"}" data-inp="__all" aria-pressed="${!dInpSel.length}">전체</button>
-      ${dInpNames.map(nm => `<button class="dchip${dInpSel.includes(nm) ? " on" : ""}" data-inp="${esc(nm)}" aria-pressed="${dInpSel.includes(nm)}">${esc(nm)}</button>`).join("")}
-    </div>`;
+  const dInpChips = desDropdownHtml("input", dInpNames);
 
   /* 유형 × 구분 */
   const types = [...new Set(rows.map(p => p.type))];
@@ -2484,47 +2677,78 @@ function renderDash(rows){
   const rMax = Math.max(...regRows.map(r => r.n), 1);
   const regBars = regRows.map(r => bar(r.m, r.n, rMax, "var(--accent)", `${r.n}건`)).join("");
 
-  /* ===== 디자이너별 작업 현황 (workLogs 기반, 기간 필터) ===== */
+  /* ===== 디자이너별 작업 현황 (workLogs 기반, 기간 필터) — 대상: 조직도 디자인실 재직자 전체 + 기간 내 기록이 있는 인원 ===== */
   const inRange = d => (!dashFrom || d >= dashFrom) && (!dashTo || d <= dashTo);
-  const desAgg = {};   // { 이름: { hours, sites:Set, logs } }
-  rows.forEach(p => {
+  const desAgg = {};   // { 이름: { hours, sites:Set, logs, budget } }
+  SCHED_DESIGNERS.forEach(n => { desAgg[n] = { hours: 0, sites: new Set(), logs: 0, budget: 0 }; });
+  [...rows, MISC].forEach(p => {
     (p.workLogs || []).forEach(w => {
       if (!w.date || !inRange(w.date)) return;
       const k = baseName(w.designer) || "미지정";
-      const a = desAgg[k] = desAgg[k] || { hours: 0, sites: new Set(), logs: 0 };
+      const a = desAgg[k] = desAgg[k] || { hours: 0, sites: new Set(), logs: 0, budget: 0 };
       a.hours += (+w.hours || 0);
-      a.sites.add(p.id);
+      if (p !== MISC && !a.sites.has(p.id)){ a.sites.add(p.id); a.budget += (p.amount || 0); }
       a.logs++;
     });
   });
+  const metricKey = dashDesignMetric === "hours" ? "hours" : dashDesignMetric === "budget" ? "budget" : "sites";
   const desRowsAll = Object.entries(desAgg).map(([nm, a]) =>
-    ({ nm, hours: a.hours, sites: a.sites.size, logs: a.logs }))
-    .sort((x, y) => dashDesignMetric === "hours" ? (y.hours - x.hours) : (y.sites - x.sites));
-  /* 기간 내 작업기록이 있는 디자이너 전체 목록(선택 UI용, 가나다순) */
+    ({ nm, hours: a.hours, sites: a.sites.size, logs: a.logs, budget: a.budget }))
+    .sort((x, y) => (y[metricKey] - x[metricKey]) || x.nm.localeCompare(y.nm, "ko"));
   const desAllNames = desRowsAll.map(r => r.nm).sort((a, b) => a.localeCompare(b, "ko"));
-  /* 선택된 디자이너가 있으면 그 사람만, 없으면 전체 */
   const desSel = dashDesigners.filter(n => desAllNames.includes(n));
   const desRows = desSel.length ? desRowsAll.filter(r => desSel.includes(r.nm)) : desRowsAll;
-  const metricIsHours = dashDesignMetric === "hours";
-  const desMax = Math.max(...desRows.map(r => metricIsHours ? r.hours : r.sites), 1);
+  const metricIsHours = dashDesignMetric === "hours", metricIsBudget = dashDesignMetric === "budget";
+  const desMax = Math.max(...desRows.map(r => r[metricKey]), 1);
   const desBars = desRows.length ? desRows.map(r => {
-    const val = metricIsHours ? r.hours : r.sites;
-    const label = metricIsHours
-      ? `${r.hours}시간 · ${r.sites}개 현장`
-      : `${r.sites}개 현장 · ${r.hours}시간`;
-    return bar(r.nm, val, desMax, "var(--st-design)", label);
+    const parts = [`${r.sites}개 현장`, `${r.hours}시간`, `예산 ${fmtCompact(r.budget)}`];
+    const order = metricIsHours ? [1, 0, 2] : metricIsBudget ? [2, 0, 1] : [0, 1, 2];
+    return bar(r.nm, r[metricKey], desMax, "var(--st-design)", order.map(i => parts[i]).join(" · "));
   }).join("") : `<div class="dempty">선택한 조건에 작업기록이 없습니다</div>`;
   const desTotHours = desRows.reduce((a, r) => a + r.hours, 0);
   const desTotLogs = desRows.reduce((a, r) => a + r.logs, 0);
-  const desChips = desAllNames.map(nm => {
-    const on = desSel.includes(nm);
-    return `<button class="dchip${on ? " on" : ""}" data-des="${esc(nm)}" aria-pressed="${on}">${esc(nm)}</button>`;
-  }).join("");
+  const desDropdown = desDropdownHtml("work", desAllNames);
+
+  /* ===== 디자이너별 수주실적 (디자인담당 기준, 현재 필터 범위) ===== */
+  const byDes2 = {};
+  rows.forEach(p => {
+    (p.owners.design || "").split(/\s*,\s*/).filter(Boolean).forEach(k => {
+      const nm = baseName(k);
+      const a = byDes2[nm] = byDes2[nm] || { total: 0, won: 0, wonAmt: 0, lost: 0, act: 0 };
+      a.total++;
+      if (isWon(p)){ a.won++; a.wonAmt += (p.amount || 0); }
+      if (p.status === "LOST") a.lost++;
+      if (!TERMINAL.has(p.status)) a.act++;
+    });
+  });
+  const wonNames = Object.keys(byDes2).sort((a, b) => a.localeCompare(b, "ko"));
+  const wonSel = dashWonDesigners.filter(n => wonNames.includes(n));
+  const desWonRows = Object.entries(byDes2).filter(([nm]) => !wonSel.length || wonSel.includes(nm)).sort((a, b) => b[1].wonAmt - a[1].wonAmt);
+  const desWonTab = desWonRows.length ? `<table class="dtab"><thead><tr><th>디자이너</th><th class="num">담당</th><th class="num">진행중</th><th class="num">수주</th><th class="num">수주금액</th><th class="num">수주율(건)</th><th class="num">실패</th></tr></thead><tbody>
+    ${desWonRows.map(([nm, a]) => `<tr><td>${esc(nm)}</td><td class="num">${a.total}</td><td class="num">${a.act}</td><td class="num pos">${a.won}건</td><td class="num pos">${fmtCompact(a.wonAmt)}</td><td class="num">${a.total ? Math.round(a.won / a.total * 100) + "%" : "—"}</td><td class="num">${a.lost || "—"}</td></tr>`).join("")}
+    </tbody></table>` : `<div class="dempty">디자인담당이 지정된 프로젝트가 없습니다</div>`;
+
+  /* ===== 프로젝트별 디자인 비용 = Σ(디자이너 시급 × 실적 작업시간) / 전체 수주금액 ===== */
+  const costNames = [...new Set([...SCHED_DESIGNERS, ...rows.flatMap(p => (p.workLogs || []).filter(w => w.state === "done").map(w => baseName(w.designer)))])].sort((a, b) => a.localeCompare(b, "ko"));
+  const costSel = dashCostDesigners.filter(n => costNames.includes(n));
+  const costRows = rows.map(p => {
+    const done = (p.workLogs || []).filter(w => w.state === "done" && (!costSel.length || costSel.includes(baseName(w.designer))));
+    if (!done.length) return null;
+    const hours = done.reduce((a, w) => a + (+w.hours || 0), 0);
+    const cost = done.reduce((a, w) => a + (+w.hours || 0) * hourlyOf(w.designer, w.date), 0);
+    return { p, hours, cost, ratio: p.amount ? cost / p.amount : null };
+  }).filter(Boolean).sort((a, b) => (b.ratio ?? -1) - (a.ratio ?? -1));
+  const costTot = costRows.reduce((a, r) => a + r.cost, 0), costAmt = costRows.reduce((a, r) => a + (r.p.amount || 0), 0);
+  const costTab = costRows.length ? `<table class="dtab"><thead><tr><th>프로젝트</th><th>단계</th><th class="num">수주금액</th><th class="num">작업시간</th><th class="num">디자인 비용</th><th class="num">비율</th></tr></thead><tbody>
+    ${costRows.slice(0, 20).map(r => `<tr class="rowlink" data-open="${esc(r.p.id)}"><td><span class="mono dim2">${esc(r.p.id)}</span> ${esc(r.p.name.length > 22 ? r.p.name.slice(0, 22) + "…" : r.p.name)}</td><td class="dim2">${esc(STATES[r.p.status].name)}</td><td class="num">${fmtCompact(r.p.amount)}</td><td class="num">${r.hours}h</td><td class="num">${fmtCompact(Math.round(r.cost))}</td><td class="num${r.ratio != null && r.ratio > 0.1 ? " neg" : ""}">${r.ratio == null ? "—" : (r.ratio * 100).toFixed(1) + "%"}</td></tr>`).join("")}
+    </tbody></table>${costRows.length > 20 ? `<div class="dim2" style="margin-top:6px">비율 상위 20건 표시 (전체 ${costRows.length}건)</div>` : ""}` : `<div class="dempty">실적(확정) 업무일지가 있는 프로젝트가 없습니다</div>`;
+
   const rangeCtl = `
     <div class="dctl">
       <div class="seg" role="group" aria-label="지표 선택">
-        <button id="dmCount" aria-pressed="${!metricIsHours}">진행 현장수</button>
+        <button id="dmCount" aria-pressed="${!metricIsHours && !metricIsBudget}">진행 현장수</button>
         <button id="dmHours" aria-pressed="${metricIsHours}">작업시간</button>
+        <button id="dmBudget" aria-pressed="${metricIsBudget}">프로젝트 예산</button>
       </div>
       <div class="grp"><span>기간</span>
         <input type="date" id="dRangeFrom" value="${esc(dashFrom)}" max="${esc(dashTo || REF)}">
@@ -2536,25 +2760,25 @@ function renderDash(rows){
       <button class="qbtn" data-range="6">최근 6개월</button>
       <button class="qbtn" data-range="0">전체</button>
     </div>
-    <div class="dchips">
-      <span class="dchips-lab">디자이너</span>
-      <button class="dchip${desSel.length ? "" : " on"}" data-des="__all" aria-pressed="${!desSel.length}">전체</button>
-      ${desChips}
-    </div>`;
+    ${desDropdown}`;
 
+  dashNames = { work: desAllNames, input: dInpNames, won: wonNames, cost: costNames };
   $("#dashWrap").innerHTML = `
     <div class="dcard full"><h3>핵심 지표<span class="sub">현재 필터·권한 범위 기준</span></h3>
-      <div class="dkpis">
-        <div class="dk"><div class="v">${act.length}<small>건</small></div><div class="l">진행중 프로젝트</div></div>
-        <div class="dk blue"><div class="v">${fmtCompact(pipeAmt)}</div><div class="l">영업 파이프라인 (미수주 활성)</div></div>
-        <div class="dk green"><div class="v">${fmtCompact(wonAmt)}</div><div class="l">수주완료 금액 ${won.length}건</div></div>
-        <div class="dk"><div class="v">${winRate === null ? "—" : winRate + "<small>%</small>"}</div><div class="l">승률 (수주 ${won.length} : 실패 ${lost.length})</div></div>
-        <div class="dk red"><div class="v">${reds.length}<small>건</small></div><div class="l">정체 (기준 초과)</div></div>
+      <div class="dkpis four">
+        <div class="dk"><div class="v">${act.length}<small>건</small> <span class="v2">${fmtCompact(actAmt)}</span></div><div class="l">진행중 프로젝트 건수 · 금액</div></div>
+        <div class="dk green"><div class="v">${won.length}<small>건</small> <span class="v2">${fmtCompact(wonAmt)}</span></div><div class="l">수주 건수 · 수주금액</div></div>
+        <div class="dk blue"><div class="v">${pct(won.length, rows.length)}<small>건수</small> <span class="v2">${pct(wonAmt, totAmt)}<small>금액</small></span></div><div class="l">수주율 = 수주확정 ${won.length}건 / 전체 ${rows.length}건 · ${fmtCompact(wonAmt)} / ${fmtCompact(totAmt)}</div></div>
+        <div class="dk red"><div class="v">${pct(lost.length, rows.length)}<small>건수</small> <span class="v2">${pct(lostAmt, totAmt)}<small>금액</small></span></div><div class="l">실패율 = 실패확정 ${lost.length}건 / 전체 ${rows.length}건 · ${fmtCompact(lostAmt)} / ${fmtCompact(totAmt)}</div></div>
       </div></div>
-    <div class="dcard full"><h3>디자이너별 작업 현황<span class="sub">${metricIsHours ? "작업시간(시간) 기준" : "진행 현장수 기준"} · ${esc(dashFrom || "전체")} ~ ${esc(dashTo || "전체")} · ${desSel.length ? `선택 ${desSel.length}명` : "전체"} · 작업기록 ${desTotLogs}건 / 총 ${desTotHours}시간</span></h3>
+    <div class="dcard full"><h3>디자이너별 작업 현황<span class="sub">${metricIsHours ? "작업시간 기준" : metricIsBudget ? "프로젝트 예산 기준" : "진행 현장수 기준"} · ${esc(dashFrom || "전체")} ~ ${esc(dashTo || "전체")} · ${desSel.length ? `선택 ${desSel.length}명` : "디자인실 전체"} · 작업기록 ${desTotLogs}건 / 총 ${desTotHours}시간</span></h3>
       ${rangeCtl}
       <div style="height:10px"></div>
-      ${desBars}</div>
+      <div class="hbar-wide">${desBars}</div></div>
+    <div class="dcard"><h3>디자이너별 수주실적<span class="sub">디자인담당 기준 · 현재 필터 범위${wonSel.length ? ` · 선택 ${wonSel.length}명` : ""}</span></h3>
+      ${desDropdownHtml("won", wonNames)}<div style="height:10px"></div>${desWonTab}</div>
+    <div class="dcard"><h3>프로젝트별 디자인 비용<span class="sub">Σ(디자이너 시급 × 실적시간) ÷ 수주금액 · 합계 ${fmtCompact(Math.round(costTot))} / ${fmtCompact(costAmt)}${costSel.length ? ` · 선택 디자이너 실적만` : ""} · 클릭 시 상세</span></h3>
+      ${desDropdownHtml("cost", costNames)}<div style="height:10px"></div>${costTab}</div>
     <div class="dcard full"><h3>영업 기회 — 단계별 파이프라인<span class="sub">건수 기준, 금액 병기</span></h3>${funnel}</div>
     <div class="dcard"><h3>디자이너 투입 현황<span class="sub">작업중 = 디자인요청·디자인중·수정요청${dInpSel.length ? ` · 선택 ${dInpSel.length}명` : ""}</span></h3>
       ${dInpChips}
@@ -3046,18 +3270,18 @@ function detailDocHtml(p, ui){
   const editor = ui.newDate ? evFormHtml(null, ui.newDate)
     : `<div class="dim2" style="margin-top:10px">빈 날짜 칸을 클릭하면 새 일정이 등록됩니다. 분홍 일정을 클릭하면 주요일정(회의록) 카드의 상세 내용으로 이동하고, 회색 표시는 프로젝트 데이터의 일정(요청·제출·계약 등)입니다.</div>`;
 
-  const NAVS = [["all","전체"],["ov","프로젝트 개요"],["own","담당자정보"],["design","디자인"],["quote","견적"],["eng","설계"],["meet","주요일정(회의록)"],["cal","캘린더보기"],["gantt","간트차트"]];
+  const NAVS = [["all","전체"],["ov","프로젝트 개요"],["design","디자인"],["quote","견적"],["eng","설계"],["meet","회의록"],["cal","캘린더"],["gantt","간트차트"]];
   const navBar = NAVS.map(([k, label]) =>
     `<button class="tn${(ui.tab === "cal" || ui.tab === "gantt" ? k === ui.tab.replace("cal","cal").replace("gantt","gantt") && (k === "cal" ? ui.tab === "cal" : ui.tab === "gantt") : k === (ui.sec || "all")) ? " on" : ""}" data-sec="${k}">${esc(label)}</button>`).join("");
 
-  const SEC = k => (ui.sec || "all") === "all" || ui.sec === k;
+  const SEC = k => (ui.sec || "all") === "all" || ui.sec === k || (k === "own" && ui.sec === "ov"); /* 담당자정보는 프로젝트 개요 탭에 포함 */
   const infoView = `
   <div class="secs">
     ${SEC("ov") ? `<section class="card" id="sec-ov"><h2>프로젝트 개요</h2>
       <div class="fgrid">
         <label class="span2">프로젝트 명<input type="text" id="ovName" value="${esc(p.name)}"${canEd ? "" : " disabled"}></label>
         <label>프로젝트 코드<input type="text" value="${esc(p.id)}${p.legacyCode ? " · " + esc(p.legacyCode) : ""}" disabled></label>
-        <label>사업예산<input type="text" inputmode="numeric" id="ovAmount" value="${p.amount != null ? Number(p.amount).toLocaleString() : ""}" placeholder="원"${canEd ? "" : " disabled"}></label>
+        <label>사업예산 (백만원)<input type="text" inputmode="decimal" id="ovAmount" value="${amtInputText(p.amount)}" placeholder="백만원"${canEd ? "" : " disabled"}></label>
         <label>유형<select id="ovType"${canEd ? "" : " disabled"}>${["에듀테인","공간사업","실외놀이","설계용역","미분류"].map(t2 => `<option${t2 === p.type ? " selected" : ""}>${t2}</option>`).join("")}</select></label>
         <label>구분<select id="ovSector"${canEd ? "" : " disabled"}><option value=""${!p.sector ? " selected" : ""}>미지정</option><option${p.sector === "민간" ? " selected" : ""}>민간</option><option${p.sector === "공공" ? " selected" : ""}>공공</option></select></label>
         <label class="span2">프로젝트 폴더 경로<input type="text" id="ovFolder" class="mono" value="${esc(p.folderPath || "")}" placeholder="\\\\NAS\\프로젝트\\... 또는 https://drive..."${canEd ? "" : " disabled"}></label>
@@ -3089,28 +3313,40 @@ function detailDocHtml(p, ui){
       ${canEd ? `<div class="btnrow" style="grid-column:1/-1"><span class="flex1"></span><button class="primary" id="clSave">저장</button></div>` : ""}
     </section>` : ""}
 
-    ${SEC("design") ? `<section class="card" id="sec-design"><h2>디자인요청일</h2>
-      <div class="drhead"><span class="drlab-sp"></span>
-        <span class="drpill">요청일</span><span class="drpill">완료요청일</span><span class="drpill">완료일</span><span class="drpill dim">투입(계획·실적)</span></div>
-      <div class="drrow" data-round="0">
-        <span class="drlab">1</span>
-        <input type="date" data-rq="0" value="${esc(sched.proposalReq || "")}"${canEd ? "" : " disabled"}>
-        <input type="date" data-rd="0" value="${esc(sched.proposalDue || "")}"${canEd ? "" : " disabled"}>
-        <input type="date" data-rf="0" value="${esc(sched.proposalDone || "")}"${canEd ? "" : " disabled"}>
-        <span class="drhr mono">${(h => `${h.plan}h · ${h.done}h`)(roundHoursOf(p, 1))}</span>
-      </div>
-      ${rv.map((r, i) => `<div class="drrow" data-round="${i + 1}">
-        <span class="drlab v2">${i + 2}<button class="xdel" data-rdel="${i}" title="${i + 2}차 삭제"${canEd ? "" : " disabled"}>&#10005;</button></span>
-        <input type="date" data-rq="${i + 1}" value="${esc(r.date || "")}"${canEd ? "" : " disabled"}>
-        <input type="date" data-rd="${i + 1}" value="${esc(r.due || "")}"${canEd ? "" : " disabled"}>
-        <input type="date" data-rf="${i + 1}" value="${esc(r.done || "")}"${canEd ? "" : " disabled"}>
-        <span class="drhr mono">${(h => `${h.plan}h · ${h.done}h`)(roundHoursOf(p, i + 2))}</span>
-      </div>`).join("")}
-      ${canEd && rv.length + 1 < 15 ? `<button class="dradd" id="dsAdd" title="디자인 수정요청 차수 추가">＋</button>`
-        : rv.length + 1 >= 15 ? `<div class="dim2" style="margin-top:6px">최대 15차까지 기록할 수 있습니다.</div>` : ""}
-      ${rv.length + 1 >= 4 ? `<div class="dim2" style="margin-top:6px;color:var(--danger)"><b>총 ${rv.length + 1}차 — 기준(3차) 초과</b></div>` : ""}
-      <label class="span2" style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink3);margin-top:12px">디자인 요청 내용 — 수시로 수정·저장할 수 있습니다
-        <textarea id="dsNote"${canEd ? "" : " disabled"} placeholder="디자인 요청 내용">${esc(p.designRequest || "")}</textarea></label>
+    ${SEC("design") ? `<section class="card" id="sec-design"><h2>디자인 요청</h2>
+      ${(() => {
+        const dis = canEd ? "" : " disabled";
+        const head = `<div class="drhead"><span class="drlab-sp"></span>
+          <span class="drpill">요청일</span><span class="drpill">완료요청일</span><span class="drpill">완료일</span><span class="drpill dim">투입(계획·실적)</span></div>`;
+        const dateRow = (i, req, due, done, no) => `<div class="drrow" data-round="${i}">
+          <span class="drlab">${no}</span>
+          <input type="date" data-rq="${i}" value="${esc(req || "")}"${dis}>
+          <input type="date" data-rd="${i}" value="${esc(due || "")}"${dis}>
+          <input type="date" data-rf="${i}" value="${esc(done || "")}"${dis}>
+          <span class="drhr mono">${(h => `${h.plan}h · ${h.done}h`)(roundHoursOf(p, no))}</span></div>`;
+        /* 1차 = schedule.proposal* + designRequest + designProposalLink, 2차~ = revisions[i-1] */
+        const rounds = [{ req: sched.proposalReq, due: sched.proposalDue, done: sched.proposalDone, note: p.designRequest, link: p.designProposalLink, del: false },
+          ...rv.map((r, i) => ({ req: r.date, due: r.due, done: r.done, note: r.note, link: r.link, del: true, idx: i }))];
+        const MAXF = 5;
+        const full = rounds.slice(0, MAXF).map((r, i) => `<div class="drblk" data-rblk="${i}">
+          <div class="drtitle">디자인 요청 ${i + 1}차${r.del && canEd ? `<button class="xdel" data-rdel="${r.idx}" title="${i + 1}차 삭제">&#10005;</button>` : ""}</div>
+          ${head}${dateRow(i, r.req, r.due, r.done, i + 1)}
+          <label class="drfld">디자인 요청 내용<textarea data-rn="${i}" placeholder="${i ? "수정 요청 내용" : "디자인 요청 내용"}"${dis}>${esc(r.note || "")}</textarea></label>
+          <label class="drfld">${i ? "수정 내용 제안서 링크" : "제안서 링크"}<input type="text" class="mono" data-rl="${i}" placeholder="\\\\NAS\\... 또는 https://..." value="${esc(r.link || "")}"${dis}></label></div>`).join("");
+        const rest = rounds.slice(MAXF).map((r, j) => { const i = j + MAXF; return `<div class="drrow" data-round="${i}" style="margin-top:4px">
+          <span class="drlab v2">${i + 1}${canEd ? `<button class="xdel" data-rdel="${r.idx}" title="${i + 1}차 삭제">&#10005;</button>` : ""}</span>
+          <input type="date" data-rq="${i}" value="${esc(r.req || "")}"${dis}>
+          <input type="date" data-rd="${i}" value="${esc(r.due || "")}"${dis}>
+          <input type="date" data-rf="${i}" value="${esc(r.done || "")}"${dis}>
+          <span class="drhr mono">${(h => `${h.plan}h · ${h.done}h`)(roundHoursOf(p, i + 1))}</span>
+          <input type="hidden" data-rn="${i}" value="${esc(r.note || "")}"><input type="hidden" data-rl="${i}" value="${esc(r.link || "")}"></div>`; }).join("");
+        const addBtn = canEd && rounds.length < MAXF ? `<button class="dradd wide" id="dsAdd" title="디자인 요청 차수 추가">＋ ${rounds.length + 1}차 추가</button>` : "";
+        const extra = rounds.length >= MAXF ? `<div class="drblk" style="margin-top:14px">
+          ${rest ? `<div class="drtitle">6차 이후 요청일 기록</div>${head}${rest}` : ""}
+          <label class="drfld">추가 요청 내용 (6차 이후)<textarea class="drextra" id="dsExtra" placeholder="6차 이후 추가 디자인 요청 내용을 기록하세요"${dis}>${esc(p.designExtraNote || "")}</textarea></label></div>` : "";
+        const warn = rounds.length >= 4 ? `<div class="dim2" style="margin:6px 0;color:var(--danger)"><b>총 ${rounds.length}차 — 기준(3차) 초과</b></div>` : "";
+        return full + addBtn + warn + extra;
+      })()}
       <label class="span2" style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink3);margin-top:10px">프로젝트 폴더 경로
         <input type="text" id="dsFolder" class="mono" value="${esc(p.designFolder || "")}" placeholder="\\\\NAS\\디자인\\..."${canEd ? "" : " disabled"}></label>
       <div class="evfiles" style="margin-top:10px">
@@ -3138,41 +3374,80 @@ function detailDocHtml(p, ui){
       ${canEd ? `<div class="btnrow"><span class="flex1"></span><button class="primary" id="dsSave">저장</button></div>` : ""}
     </section>` : ""}
 
-    ${SEC("quote") ? `<section class="card two" id="sec-quote">
-      <div><h2>견적요청</h2>
-        <table class="kv"><tr><th>전체사업비</th><td class="mono">${fmtWon(p.amount)}</td></tr></table>
-        <div class="fgrid three" style="margin-top:6px">
-          <label>견적 요청일<input type="date" id="qReq" value="${esc(sched.quoteReq || "")}"${canEd ? "" : " disabled"}></label>
-          <label>견적 완료일<input type="date" id="qDone" value="${esc(sched.quoteDone || "")}"${canEd ? "" : " disabled"}></label>
-        </div>
-        <div class="ckrow">
-          <label><input type="checkbox" data-qk="est"${p.quoteTypes.est ? " checked" : ""}${canEd ? "" : " disabled"}>예가</label>
-          <label><input type="checkbox" data-qk="exec"${p.quoteTypes.exec ? " checked" : ""}${canEd ? "" : " disabled"}>실행가</label>
-          <label><input type="checkbox" data-qk="design"${p.quoteTypes.design ? " checked" : ""}${canEd ? "" : " disabled"}>설계가</label>
-        </div></div>
-      <div><h2 class="h2sub">요청특이사항</h2>
-        <textarea class="bigtext" id="quoteNote" placeholder="견적 요청 시 특이사항"${canEd ? "" : " disabled"}>${esc(p.quoteRequest || "")}</textarea></div>
-      ${canEd ? `<div class="btnrow" style="grid-column:1/-1"><span class="flex1"></span><button class="primary" id="quoteSave">저장</button></div>` : ""}
+    ${SEC("quote") ? `<section class="card" id="sec-quote"><h2>견적 요청 <span class="dim2" style="font-weight:400;font-size:13px">전체사업비 ${fmtWon(p.amount)}</span></h2>
+      ${(() => {
+        const dis = canEd ? "" : " disabled";
+        const qr = p.quoteRounds || [];
+        const MAXF = 5;
+        const head = `<div class="drhead"><span class="drlab-sp"></span>
+          <span class="drpill">요청일</span><span class="drpill">완료요청일</span><span class="drpill">완료일</span><span class="drpill dim">투입(계획·실적)</span></div>`;
+        const ck = (i, r) => `<div class="ckrow" style="margin:2px 0 8px">
+          <label><input type="checkbox" data-qk="est" data-qi="${i}"${r.types.est ? " checked" : ""}${dis}>예가</label>
+          <label><input type="checkbox" data-qk="exec" data-qi="${i}"${r.types.exec ? " checked" : ""}${dis}>실행가</label>
+          <label><input type="checkbox" data-qk="design" data-qi="${i}"${r.types.design ? " checked" : ""}${dis}>설계가</label></div>`;
+        const dateRow = i => { const r = qr[i]; return `<div class="drrow qrow" data-qround="${i}">
+          <span class="drlab">${i + 1}</span>
+          <input type="date" data-qq="${i}" value="${esc(r.date || "")}"${dis}>
+          <input type="date" data-qd="${i}" value="${esc(r.due || "")}"${dis}>
+          <input type="date" data-qf="${i}" value="${esc(r.done || "")}"${dis}>
+          <span class="drhr mono">—</span></div>`; };
+        const fileBlk = (i, r) => `<div class="evfiles"><span class="dim2">견적 참고용 자료 업로드${r.files.length ? ` (${r.files.length})` : ""} — 2MB 이하, 서버 연결 전까지는 세션에만 보관</span>
+          ${r.files.length ? `<ul class="flist">${r.files.map((f, fi) => `<li><a href="${f.dataUrl}" download="${esc(f.name)}">${esc(f.name)}</a>
+            <span class="dim2">${Math.max(1, Math.round(f.size / 1024))}KB</span>${canEd ? `<button class="xdel" data-qfdel="${i}:${fi}">&#10005;</button>` : ""}</li>`).join("")}</ul>` : ""}
+          ${canEd ? `<input type="file" data-qfile="${i}" multiple>` : ""}</div>`;
+        const full = qr.slice(0, MAXF).map((r, i) => `<div class="drblk" data-qblk="${i}">
+          <div class="drtitle">견적 요청${qr.length > 1 ? ` ${i + 1}차` : ""}${i > 0 && canEd ? `<button class="xdel" data-qdel="${i}" title="${i + 1}차 삭제">&#10005;</button>` : ""}</div>
+          ${ck(i, r)}${head}${dateRow(i)}
+          ${fileBlk(i, r)}
+          <label class="drfld">견적 참고용 자료 (경로·링크)<input type="text" class="mono" data-ql="${i}" placeholder="\\\\NAS\\... 또는 https://..." value="${esc(r.link || "")}"${dis}></label>
+          <label class="drfld">견적 요청 특이사항<textarea data-qn="${i}" placeholder="견적 요청 시 특이사항"${dis}>${esc(r.note || "")}</textarea></label></div>`).join("");
+        const rest = qr.slice(MAXF).map((r, j) => { const i = j + MAXF; return `${dateRow(i).replace(`<span class="drlab">${i + 1}</span>`, `<span class="drlab v2">${i + 1}${canEd ? `<button class="xdel" data-qdel="${i}" title="${i + 1}차 삭제">&#10005;</button>` : ""}</span>`)}
+          <input type="hidden" data-qn="${i}" value="${esc(r.note || "")}"><input type="hidden" data-ql="${i}" value="${esc(r.link || "")}">
+          <input type="hidden" data-qk="est" data-qi="${i}" value="${r.types.est ? 1 : ""}"><input type="hidden" data-qk="exec" data-qi="${i}" value="${r.types.exec ? 1 : ""}"><input type="hidden" data-qk="design" data-qi="${i}" value="${r.types.design ? 1 : ""}">`; }).join("");
+        const addBtn = canEd && qr.length < MAXF ? `<button class="dradd wide" id="quoteAdd" title="견적 요청 차수 추가">＋ ${qr.length + 1}차 추가</button>` : "";
+        const extra = qr.length >= MAXF ? `<div class="drblk" style="margin-top:14px">
+          ${rest ? `<div class="drtitle">6차 이후 요청일 기록</div>${head}${rest}` : ""}
+          <label class="drfld">추가 요청 내용 (6차 이후)<textarea class="drextra" id="quoteExtra" placeholder="6차 이후 추가 견적 요청 내용을 기록하세요"${dis}>${esc(p.quoteExtraNote || "")}</textarea></label></div>` : "";
+        return full + addBtn + extra;
+      })()}
+      ${canEd ? `<div class="btnrow"><span class="flex1"></span><button class="primary" id="quoteSave">저장</button></div>` : ""}
     </section>` : ""}
 
-    ${SEC("eng") ? `<section class="card two" id="sec-eng">
-      <div><h2>설계요청</h2>
-        <table class="kv"><tr><th>전체사업비</th><td class="mono">${fmtWon(p.amount)}</td></tr></table>
-        <div class="fgrid three" style="margin-top:6px">
-          <label>설계 요청일<input type="date" id="eReq" value="${esc(sched.engReq || "")}"${canEd ? "" : " disabled"}></label>
-          <label>설계 완료일<input type="date" id="eDone" value="${esc(sched.engDone || "")}"${canEd ? "" : " disabled"}></label>
-        </div>
-        <div class="ckrow">
-          <label><input type="checkbox" data-ek="basic"${p.engTypes.basic ? " checked" : ""}${canEd ? "" : " disabled"}>기본설계</label>
-          <label><input type="checkbox" data-ek="detail"${p.engTypes.detail ? " checked" : ""}${canEd ? "" : " disabled"}>실시설계</label>
-          <label><input type="checkbox" data-ek="prod"${p.engTypes.prod ? " checked" : ""}${canEd ? "" : " disabled"}>제작설계</label>
-        </div></div>
-      <div><h2 class="h2sub">요청특이사항</h2>
-        <textarea class="bigtext" id="engNote" placeholder="설계 요청 시 특이사항"${canEd ? "" : " disabled"}>${esc(p.engRequest || "")}</textarea></div>
-      ${canEd ? `<div class="btnrow" style="grid-column:1/-1"><span class="flex1"></span><button class="primary" id="engSave">저장</button></div>` : ""}
+    ${SEC("eng") ? `<section class="card" id="sec-eng"><h2>설계 요청 <span class="dim2" style="font-weight:400;font-size:13px">전체사업비 ${fmtWon(p.amount)}</span></h2>
+      ${(() => {
+        const dis = canEd ? "" : " disabled";
+        const er = p.engRounds || [];
+        const MAXF = 5;
+        const head = `<div class="drhead"><span class="drlab-sp"></span>
+          <span class="drpill">요청일</span><span class="drpill">완료요청일</span><span class="drpill">완료일</span><span class="drpill dim">투입(계획·실적)</span></div>`;
+        const ck = (i, r) => `<div class="ckrow" style="margin:2px 0 8px">
+          <label><input type="checkbox" data-ek="basic" data-ei="${i}"${r.types.basic ? " checked" : ""}${dis}>기본설계</label>
+          <label><input type="checkbox" data-ek="detail" data-ei="${i}"${r.types.detail ? " checked" : ""}${dis}>실시설계</label>
+          <label><input type="checkbox" data-ek="prod" data-ei="${i}"${r.types.prod ? " checked" : ""}${dis}>제작설계</label></div>`;
+        const dateRow = i => { const r = er[i]; return `<div class="drrow erow" data-eround="${i}">
+          <span class="drlab">${i + 1}</span>
+          <input type="date" data-eq="${i}" value="${esc(r.date || "")}"${dis}>
+          <input type="date" data-ed="${i}" value="${esc(r.due || "")}"${dis}>
+          <input type="date" data-ef="${i}" value="${esc(r.done || "")}"${dis}>
+          <span class="drhr mono">—</span></div>`; };
+        const full = er.slice(0, MAXF).map((r, i) => `<div class="drblk" data-eblk="${i}">
+          <div class="drtitle">설계 요청${er.length > 1 ? ` ${i + 1}차` : ""}${i > 0 && canEd ? `<button class="xdel" data-edel="${i}" title="${i + 1}차 삭제">&#10005;</button>` : ""}</div>
+          ${ck(i, r)}${head}${dateRow(i)}
+          <label class="drfld">설계 요청 특이사항<textarea data-en="${i}" placeholder="설계 요청 시 특이사항"${dis}>${esc(r.note || "")}</textarea></label>
+          <label class="drfld">설계도면 링크<input type="text" class="mono" data-el="${i}" placeholder="\\\\NAS\\... 또는 https://..." value="${esc(r.link || "")}"${dis}></label></div>`).join("");
+        const rest = er.slice(MAXF).map((r, j) => { const i = j + MAXF; return `${dateRow(i).replace(`<span class="drlab">${i + 1}</span>`, `<span class="drlab v2">${i + 1}${canEd ? `<button class="xdel" data-edel="${i}" title="${i + 1}차 삭제">&#10005;</button>` : ""}</span>`)}
+          <input type="hidden" data-en="${i}" value="${esc(r.note || "")}"><input type="hidden" data-el="${i}" value="${esc(r.link || "")}">
+          <input type="hidden" data-ek="basic" data-ei="${i}" value="${r.types.basic ? 1 : ""}"><input type="hidden" data-ek="detail" data-ei="${i}" value="${r.types.detail ? 1 : ""}"><input type="hidden" data-ek="prod" data-ei="${i}" value="${r.types.prod ? 1 : ""}">`; }).join("");
+        const addBtn = canEd && er.length < MAXF ? `<button class="dradd wide" id="engAdd" title="설계 요청 차수 추가">＋ ${er.length + 1}차 추가</button>` : "";
+        const extra = er.length >= MAXF ? `<div class="drblk" style="margin-top:14px">
+          ${rest ? `<div class="drtitle">6차 이후 요청일 기록</div>${head}${rest}` : ""}
+          <label class="drfld">추가 요청 내용 (6차 이후)<textarea class="drextra" id="engExtra" placeholder="6차 이후 추가 설계 요청 내용을 기록하세요"${dis}>${esc(p.engExtraNote || "")}</textarea></label></div>` : "";
+        return full + addBtn + extra;
+      })()}
+      ${canEd ? `<div class="btnrow"><span class="flex1"></span><button class="primary" id="engSave">저장</button></div>` : ""}
     </section>` : ""}
 
-    ${SEC("meet") ? `<section class="card" id="sec-meet"><h2>주요일정(회의록)
+    ${SEC("meet") ? `<section class="card" id="sec-meet"><h2>회의록
       ${canEd ? `<button class="mini" id="mtAddBtn">＋ 회의록 작성</button><button class="mini" id="evNewBtn2">＋ 일정 등록</button>` : ""}</h2>
       ${mtForm}${meetEditor}${mtList}</section>` : ""}
   </div>`;
@@ -3267,7 +3542,7 @@ function detailDocHtml(p, ui){
 --st-prep:#878A93;--st-design:#5B37ED;--st-quote:#0098B2;--st-review:#D17600;--st-wait:#429E00;
 --st-won:#00BF40;--st-prod:#005EEB;--st-const:#F55A00;--st-end:#989BA2}
 *{box-sizing:border-box;margin:0}
-body{font-family:'Pretendard Variable',Pretendard,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65}
+body{font-family:'Pretendard Variable',Pretendard,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;zoom:.84}  /* 목록(12.5px)과 같은 글자 크기로 전체 축소 */
 .mono{font-family:'IBM Plex Mono',monospace;font-size:13.5px}
 button{font:inherit;background:none;border:none;cursor:pointer;color:inherit}
 .wrap{max-width:1080px;margin:18px auto;padding:0 18px}
@@ -3314,6 +3589,21 @@ select:focus,input:focus,textarea:focus{outline:2px solid rgba(51,102,255,.25);b
 .drlab.v2 .xdel:hover{color:#fff}
 .dradd{width:44px;height:44px;background:var(--accent);color:#fff;font-size:18px;font-weight:700;border-radius:8px;padding:0;opacity:.85}
 .dradd:hover{opacity:1}
+.drtitle{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--ink);margin:14px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.drblk:first-of-type .drtitle{margin-top:4px}
+.drblk{margin-bottom:18px}
+.drtitle .xdel{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid var(--line2);border-radius:50%;font-size:11px;color:var(--ink3);padding:0;margin-left:2px;background:var(--surface);cursor:pointer;line-height:1}
+.drtitle .xdel:hover{color:#fff;background:var(--danger);border-color:var(--danger)}
+.cfm-scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:99}
+.cfm-box{background:#fff;border-radius:12px;padding:22px 24px;min-width:300px;max-width:420px;box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.cfm-msg{font-size:15px;margin-bottom:16px;white-space:pre-wrap}
+.cfm-btns{display:flex;gap:8px;justify-content:flex-end}
+.cfm-btns .primary.danger{background:var(--danger)}
+.drfld{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--ink3);margin-top:10px}
+.drfld textarea{min-height:88px;resize:vertical}
+.drfld input[type=text]{width:100%}
+.drextra{width:100%;min-height:110px;margin-top:4px}
+.dradd.wide{width:auto;padding:0 18px;font-size:14px;height:40px}
 .ckrow{display:flex;gap:18px;margin:10px 0 4px}
 .ckrow label{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:15px;color:var(--ink);cursor:pointer}
 .ckrow input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent)}
@@ -3389,9 +3679,25 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
 (function(){
   var pid = document.querySelector(".wrap").dataset.pid;
   function api(){ try { var h = window.opener || (window.parent !== window ? window.parent : null); return h && h.__detailApi; } catch (e) { return null; } }
+
   function need(fn){ var a = api(); if (!a){ alert("관리 화면과의 연결이 끊겼습니다. 관리 화면에서 다시 열어주세요."); return; } fn(a); }
+  /* 내장 확인창 — 브라우저 confirm()이 차단되는 환경(임베드 iframe 등)에서도 동작 */
+  function askConfirm(msg, ok){
+    var ov = document.createElement("div"); ov.className = "cfm-scrim";
+    ov.innerHTML = '<div class="cfm-box" role="dialog"><div class="cfm-msg"></div><div class="cfm-btns"><button class="ghost" data-c="0">취소</button><button class="primary danger" data-c="1">삭제</button></div></div>';
+    ov.querySelector(".cfm-msg").textContent = msg;
+    document.body.appendChild(ov);
+    ov.addEventListener("click", function(e){
+      e.stopPropagation();
+      var b = e.target.closest("[data-c]");
+      if (!b && e.target !== ov) return;
+      ov.remove();
+      if (b && b.dataset.c === "1") ok();
+    });
+    ov.querySelector('[data-c="0"]').focus();
+  }
   function val(id){ var el = document.getElementById(id); return el ? el.value : ""; }
-  function num(v){ v = (v || "").replace(/[^0-9]/g, ""); return v ? parseInt(v, 10) : null; }
+  function num(v){ v = (v || "").replace(/[^0-9.]/g, ""); return v && !isNaN(+v) ? Math.round(+v * 1e6) : null; }
 
   document.addEventListener("change", function(e){
     var t = e.target;
@@ -3406,7 +3712,7 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
   fitNote();
   document.addEventListener("input", function(e){
     var t = e.target;
-    if (t.id === "ovAmount"){ var n = num(t.value); t.value = n != null ? n.toLocaleString() : ""; }
+    if (t.id === "ovAmount"){ var v = t.value.replace(/[^0-9.]/g, ""); var i = v.indexOf("."); if (i > -1) v = v.slice(0, i + 1) + v.slice(i + 1).replace(/\./g, ""); if (t.value !== v) t.value = v; }
     if (t.id === "dsNote") fitNote();
   });
   document.addEventListener("click", function(e){
@@ -3431,7 +3737,7 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
     if (mv) return need(function(a){ a.viewMeeting(pid, parseInt(mv.dataset.mtview, 10)); });
     var md = t.closest("[data-mtdel]");
     if (md){
-      if (confirm("이 회의록을 삭제할까요?")) need(function(a){ a.delMeeting(pid, window, parseInt(md.dataset.mtdel, 10)); });
+      askConfirm("이 회의록을 삭제할까요?", function(){ need(function(a){ a.delMeeting(pid, window, parseInt(md.dataset.mtdel, 10)); }); });
       return;
     }
     var ee = t.closest("[data-evedit]");
@@ -3440,7 +3746,7 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
     if (eo) return need(function(a){ a.nav(pid, window, { tab: "info", sec: "meet", meetEvId: eo.dataset.evopen }); });
     var ed2 = t.closest("[data-evdel2]");
     if (ed2){
-      if (confirm("이 일정을 삭제할까요?")) need(function(a){ a.delEvent(pid, window, ed2.dataset.evdel2); });
+      askConfirm("이 일정을 삭제할까요?", function(){ need(function(a){ a.delEvent(pid, window, ed2.dataset.evdel2); }); });
       return;
     }
     if (t.id === "evNewBtn2") return need(function(a){ a.nav(pid, window, { tab: "info", sec: "meet", meetNew: true }); });
@@ -3461,8 +3767,8 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
     if (t.id === "dsAdd") return need(function(a){ a.addDesignRound(pid, window); });
     var rdel = t.closest("[data-rdel]");
     if (rdel){
-      if (confirm((parseInt(rdel.dataset.rdel, 10) + 2) + "차 기록을 삭제할까요?"))
-        need(function(a){ a.delDesignRound(pid, window, parseInt(rdel.dataset.rdel, 10)); });
+      askConfirm((parseInt(rdel.dataset.rdel, 10) + 2) + "차 디자인 요청 기록을 삭제할까요?", function(){
+        need(function(a){ a.delDesignRound(pid, window, parseInt(rdel.dataset.rdel, 10)); }); });
       return;
     }
     if (t.id === "dsSave"){
@@ -3472,7 +3778,9 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
         rounds.push({
           req: (document.querySelector('[data-rq="' + ri + '"]') || {}).value || "",
           due: (document.querySelector('[data-rd="' + ri + '"]') || {}).value || "",
-          done: (document.querySelector('[data-rf="' + ri + '"]') || {}).value || "" });
+          done: (document.querySelector('[data-rf="' + ri + '"]') || {}).value || "",
+          note: (document.querySelector('[data-rn="' + ri + '"]') || {}).value || "",
+          link: (document.querySelector('[data-rl="' + ri + '"]') || {}).value || "" });
       }
       var dInp = document.getElementById("dsFile");
       var dFiles = dInp && dInp.files ? Array.prototype.slice.call(dInp.files) : [];
@@ -3484,33 +3792,75 @@ ${ui.tab === "cal" ? calView : ui.tab === "gantt" ? ganttView : infoView}
         r.readAsDataURL(f);
       }); });
       Promise.all(dReads).then(function(newFiles){
-        need(function(a){ a.saveDesign(pid, window, { rounds: rounds, note: val("dsNote"),
+        need(function(a){ a.saveDesign(pid, window, { rounds: rounds, extra: val("dsExtra"),
           folder: val("dsFolder").trim(), newFiles: newFiles }); });
       });
       return;
     }
-    if (t.id === "quoteSave") return need(function(a){ a.saveQuote(pid, window, {
-      types: { est: document.querySelector('[data-qk="est"]').checked,
-               exec: document.querySelector('[data-qk="exec"]').checked,
-               design: document.querySelector('[data-qk="design"]').checked },
-      quoteReq: val("qReq"), quoteDone: val("qDone"),
-      note: document.getElementById("quoteNote").value }); });
-    if (t.id === "engSave") return need(function(a){ a.saveEng(pid, window, {
-      types: { basic: document.querySelector('[data-ek="basic"]').checked,
-               detail: document.querySelector('[data-ek="detail"]').checked,
-               prod: document.querySelector('[data-ek="prod"]').checked },
-      engReq: val("eReq"), engDone: val("eDone"),
-      note: document.getElementById("engNote").value }); });
+    if (t.id === "quoteAdd") return need(function(a){ a.addQuoteRound(pid, window); });
+    var qdel = t.closest("[data-qdel]");
+    if (qdel){
+      askConfirm((parseInt(qdel.dataset.qdel, 10) + 1) + "차 견적 요청 기록을 삭제할까요?", function(){
+        need(function(a){ a.delQuoteRound(pid, window, parseInt(qdel.dataset.qdel, 10)); }); });
+      return;
+    }
+    var qfdel = t.closest("[data-qfdel]");
+    if (qfdel){
+      askConfirm("이 참고 자료를 삭제할까요?", function(){ var qq = qfdel.dataset.qfdel.split(":"); need(function(a){ a.delQuoteFile(pid, window, parseInt(qq[0], 10), parseInt(qq[1], 10)); }); });
+      return;
+    }
+    if (t.id === "quoteSave"){
+      var qRounds = [];
+      var qN = document.querySelectorAll(".qrow").length;
+      var qckv = function(k, i){ var el = document.querySelector('[data-qk="' + k + '"][data-qi="' + i + '"]'); return el ? (el.type === "checkbox" ? el.checked : !!el.value) : false; };
+      var qReads = [];
+      for (var qi = 0; qi < qN; qi++){
+        var fInp = document.querySelector('[data-qfile="' + qi + '"]');
+        var fl = fInp && fInp.files ? Array.prototype.slice.call(fInp.files) : [];
+        for (var fk = 0; fk < fl.length; fk++) if (fl[fk].size > 2 * 1024 * 1024) return alert("2MB를 넘는 파일: " + fl[fk].name);
+        qRounds.push({
+          date: (document.querySelector('[data-qq="' + qi + '"]') || {}).value || "",
+          due: (document.querySelector('[data-qd="' + qi + '"]') || {}).value || "",
+          done: (document.querySelector('[data-qf="' + qi + '"]') || {}).value || "",
+          note: (document.querySelector('[data-qn="' + qi + '"]') || {}).value || "",
+          link: (document.querySelector('[data-ql="' + qi + '"]') || {}).value || "",
+          types: { est: qckv("est", qi), exec: qckv("exec", qi), design: qckv("design", qi) }, newFiles: [] });
+        (function(idx){ fl.forEach(function(f){ qReads.push(new Promise(function(res){
+          var r = new FileReader(); r.onload = function(){ qRounds[idx].newFiles.push({ name: f.name, size: f.size, type: f.type, dataUrl: r.result }); res(); }; r.readAsDataURL(f); })); }); })(qi);
+      }
+      Promise.all(qReads).then(function(){ need(function(a){ a.saveQuote(pid, window, { rounds: qRounds, extra: val("quoteExtra") }); }); });
+      return;
+    }
+    if (t.id === "engAdd") return need(function(a){ a.addEngRound(pid, window); });
+    var edel = t.closest("[data-edel]");
+    if (edel){
+      askConfirm((parseInt(edel.dataset.edel, 10) + 1) + "차 설계 요청 기록을 삭제할까요?", function(){
+        need(function(a){ a.delEngRound(pid, window, parseInt(edel.dataset.edel, 10)); }); });
+      return;
+    }
+    if (t.id === "engSave"){
+      var eRounds = [];
+      var eN = document.querySelectorAll(".erow").length;
+      var ckv = function(k, i){ var el = document.querySelector('[data-ek="' + k + '"][data-ei="' + i + '"]'); return el ? (el.type === "checkbox" ? el.checked : !!el.value) : false; };
+      for (var ei = 0; ei < eN; ei++){
+        eRounds.push({
+          date: (document.querySelector('[data-eq="' + ei + '"]') || {}).value || "",
+          due: (document.querySelector('[data-ed="' + ei + '"]') || {}).value || "",
+          done: (document.querySelector('[data-ef="' + ei + '"]') || {}).value || "",
+          note: (document.querySelector('[data-en="' + ei + '"]') || {}).value || "",
+          link: (document.querySelector('[data-el="' + ei + '"]') || {}).value || "",
+          types: { basic: ckv("basic", ei), detail: ckv("detail", ei), prod: ckv("prod", ei) } });
+      }
+      return need(function(a){ a.saveEng(pid, window, { rounds: eRounds, extra: val("engExtra") }); });
+    }
     if (t.id === "evCancel") return need(function(a){ a.nav(pid, window, { editId: "", newDate: "", meetEvId: "", meetNew: false }); });
     if (t.id === "evDel"){
-      if (confirm("이 일정을 삭제할까요?"))
-        need(function(a){ a.delEvent(pid, window, document.getElementById("evForm").dataset.evid); });
+      askConfirm("이 일정을 삭제할까요?", function(){ need(function(a){ a.delEvent(pid, window, document.getElementById("evForm").dataset.evid); }); });
       return;
     }
     var dfd = t.closest("[data-dfdel]");
     if (dfd){
-      if (confirm("이 첨부를 삭제할까요?"))
-        need(function(a){ a.delDesignFile(pid, window, parseInt(dfd.dataset.dfdel, 10)); });
+      askConfirm("이 첨부를 삭제할까요?", function(){ need(function(a){ a.delDesignFile(pid, window, parseInt(dfd.dataset.dfdel, 10)); }); });
       return;
     }
     var fd = t.closest("[data-fdel]");
@@ -3677,8 +4027,12 @@ window.__detailApi = {
       p.revisions[i].date = r.req || "";
       p.revisions[i].due = r.due || "";
       p.revisions[i].done = r.done || "";
+      p.revisions[i].note = (r.note || "").trim();
+      p.revisions[i].link = (r.link || "").trim();
     });
-    p.designRequest = (d2.note || "").trim();
+    p.designRequest = (r1.note || "").trim();
+    p.designProposalLink = (r1.link || "").trim();
+    if (d2.extra !== undefined) p.designExtraNote = (d2.extra || "").trim();
     p.designFolder = (d2.folder || "").trim();
     (d2.newFiles || []).forEach(f => p.designFiles.push(f));
     p.modifiedAt = REF;
@@ -3691,10 +4045,11 @@ window.__detailApi = {
   addDesignRound(pid, win){
     const p = detailP(pid);
     if (!p || !canEdit(p)) return;
-    if (p.revisions.length + 1 >= 15){ showToast("최대 15차까지 기록할 수 있습니다"); return; }
-    p.revisions.push({ no: p.revisions.length + 1, date: REF, due: "", done: "", note: "" });
+    if (p.revisions.length + 1 >= 5){ showToast("차수는 5차까지 생성할 수 있습니다 — 이후 요청은 '추가 요청 내용'에 기록하세요"); return; }
+    const today = todayISO();
+    p.revisions.push({ no: p.revisions.length + 1, date: today, due: "", done: "", note: "", link: "" });
     p.modifiedAt = REF;
-    logHist(p, "수정요청", `디자인 수정요청 ${p.revisions.length + 1}차 생성 (요청일 자동: ${REF})`);
+    logHist(p, "수정요청", `디자인 수정요청 ${p.revisions.length + 1}차 생성 (요청일 자동: ${today})`);
     render();
     refreshDetailWins(pid);
     showToast(`${p.id} ${p.revisions.length + 1}차가 생성되었습니다`);
@@ -3714,32 +4069,107 @@ window.__detailApi = {
   saveQuote(pid, win, q){
     const p = detailP(pid);
     if (!p || !canEdit(p)) return;
-    p.quoteTypes = { est: !!q.types.est, exec: !!q.types.exec, design: !!q.types.design };
+    let added = 0;
+    (q.rounds || []).forEach((r, i) => {
+      if (!p.quoteRounds[i]) return;
+      Object.assign(p.quoteRounds[i], { date: r.date || "", due: r.due || "", done: r.done || "", note: (r.note || "").trim(), link: (r.link || "").trim(),
+        types: { est: !!r.types.est, exec: !!r.types.exec, design: !!r.types.design } });
+      (r.newFiles || []).forEach(f => { p.quoteRounds[i].files.push(f); added++; });
+    });
+    if (q.extra !== undefined) p.quoteExtraNote = (q.extra || "").trim();
+    /* 1차 값은 기존 필드(schedule.quoteReq/quoteDone·quoteRequest·quoteTypes)에도 반영 — 간트·목록·엑셀 호환 */
+    const r1 = p.quoteRounds[0];
+    p.quoteTypes = { ...r1.types };
+    p.quoteRequest = r1.note;
     p.schedule = p.schedule || {};
-    if (q.quoteReq) p.schedule.quoteReq = q.quoteReq; else delete p.schedule.quoteReq;
-    if (q.quoteDone) p.schedule.quoteDone = q.quoteDone; else delete p.schedule.quoteDone;
-    p.quoteRequest = (q.note || "").trim();
+    if (r1.date) p.schedule.quoteReq = r1.date; else delete p.schedule.quoteReq;
+    if (r1.done) p.schedule.quoteDone = r1.done; else delete p.schedule.quoteDone;
     p.modifiedAt = REF;
-    const on = [q.types.est && "예가", q.types.exec && "실행가", q.types.design && "설계가"].filter(Boolean).join("·") || "없음";
-    logHist(p, "견적", `견적 정보 저장 — 견적 종류: ${on}`);
+    const on = [r1.types.est && "예가", r1.types.exec && "실행가", r1.types.design && "설계가"].filter(Boolean).join("·") || "없음";
+    logHist(p, "견적", `견적 정보 저장(총 ${p.quoteRounds.length}차) — 1차 견적 종류: ${on}` + (added ? ` (참고자료 ${added}건 추가)` : ""));
     render();
     refreshDetailWins(pid);
     showToast(`${p.id} 견적 정보가 저장되었습니다`);
   },
+  addQuoteRound(pid, win){
+    const p = detailP(pid);
+    if (!p || !canEdit(p)) return;
+    if (p.quoteRounds.length >= 5){ showToast("차수는 5차까지 생성할 수 있습니다 — 이후 요청은 '추가 요청 내용'에 기록하세요"); return; }
+    const today = todayISO();
+    p.quoteRounds.push({ no: p.quoteRounds.length + 1, date: today, due: "", done: "", note: "", link: "", files: [], types: { est: false, exec: false, design: false } });
+    p.modifiedAt = REF;
+    logHist(p, "견적", `견적 요청 ${p.quoteRounds.length}차 생성 (요청일 자동: ${today})`);
+    render();
+    refreshDetailWins(pid);
+    showToast(`견적 요청 ${p.quoteRounds.length}차가 추가되었습니다`);
+  },
+  delQuoteRound(pid, win, idx){
+    const p = detailP(pid);
+    if (!p || !canEdit(p) || idx < 1 || !p.quoteRounds[idx]) return;
+    p.quoteRounds.splice(idx, 1);
+    p.quoteRounds.forEach((r, i) => { r.no = i + 1; });
+    p.modifiedAt = REF;
+    logHist(p, "견적", `견적 요청 ${idx + 1}차 기록 삭제`);
+    render();
+    refreshDetailWins(pid);
+    showToast(`견적 요청 ${idx + 1}차 기록이 삭제되었습니다`);
+  },
+  delQuoteFile(pid, win, ri, fi){
+    const p = detailP(pid);
+    const r = p && canEdit(p) && p.quoteRounds[ri];
+    if (!r || !r.files[fi]) return;
+    const gone = r.files.splice(fi, 1)[0];
+    p.modifiedAt = REF;
+    logHist(p, "견적", `견적 참고자료 삭제 — ${gone.name}`);
+    render();
+    refreshDetailWins(pid);
+    showToast("참고 자료가 삭제되었습니다");
+  },
   saveEng(pid, win, g){
     const p = detailP(pid);
     if (!p || !canEdit(p)) return;
-    p.engTypes = { basic: !!g.types.basic, detail: !!g.types.detail, prod: !!g.types.prod };
+    (g.rounds || []).forEach((r, i) => {
+      if (!p.engRounds[i]) return;
+      Object.assign(p.engRounds[i], { date: r.date || "", due: r.due || "", done: r.done || "", note: (r.note || "").trim(), link: (r.link || "").trim(),
+        types: { basic: !!r.types.basic, detail: !!r.types.detail, prod: !!r.types.prod } });
+    });
+    if (g.extra !== undefined) p.engExtraNote = (g.extra || "").trim();
+    /* 1차 값은 기존 필드(schedule.engReq/engDone·engRequest·engTypes)에도 반영 — 간트·목록·엑셀 호환 */
+    const r1 = p.engRounds[0];
+    p.engTypes = { ...r1.types };
+    p.engRequest = r1.note;
     p.schedule = p.schedule || {};
-    if (g.engReq) p.schedule.engReq = g.engReq; else delete p.schedule.engReq;
-    if (g.engDone) p.schedule.engDone = g.engDone; else delete p.schedule.engDone;
-    p.engRequest = (g.note || "").trim();
+    if (r1.date) p.schedule.engReq = r1.date; else delete p.schedule.engReq;
+    if (r1.done) p.schedule.engDone = r1.done; else delete p.schedule.engDone;
     p.modifiedAt = REF;
-    const on = [g.types.basic && "기본설계", g.types.detail && "실시설계", g.types.prod && "제작설계"].filter(Boolean).join("·") || "없음";
-    logHist(p, "설계", `설계 정보 저장 — 설계 종류: ${on}`);
+    const on = [r1.types.basic && "기본설계", r1.types.detail && "실시설계", r1.types.prod && "제작설계"].filter(Boolean).join("·") || "없음";
+    logHist(p, "설계", `설계 정보 저장(총 ${p.engRounds.length}차) — 1차 설계 종류: ${on}`);
     render();
     refreshDetailWins(pid);
     showToast(`${p.id} 설계 정보가 저장되었습니다`);
+  },
+  addEngRound(pid, win){
+    const p = detailP(pid);
+    if (!p || !canEdit(p)) return;
+    if (p.engRounds.length >= 5){ showToast("차수는 5차까지 생성할 수 있습니다 — 이후 요청은 '추가 요청 내용'에 기록하세요"); return; }
+    const today = todayISO();
+    p.engRounds.push({ no: p.engRounds.length + 1, date: today, due: "", done: "", note: "", link: "", types: { basic: false, detail: false, prod: false } });
+    p.modifiedAt = REF;
+    logHist(p, "설계", `설계 요청 ${p.engRounds.length}차 생성 (요청일 자동: ${today})`);
+    render();
+    refreshDetailWins(pid);
+    showToast(`설계 요청 ${p.engRounds.length}차가 추가되었습니다`);
+  },
+  delEngRound(pid, win, idx){
+    const p = detailP(pid);
+    if (!p || !canEdit(p) || idx < 1 || !p.engRounds[idx]) return;
+    p.engRounds.splice(idx, 1);
+    p.engRounds.forEach((r, i) => { r.no = i + 1; });
+    p.modifiedAt = REF;
+    logHist(p, "설계", `설계 요청 ${idx + 1}차 기록 삭제`);
+    render();
+    refreshDetailWins(pid);
+    showToast(`설계 요청 ${idx + 1}차 기록이 삭제되었습니다`);
   },
   saveEvent(pid, win, data){
     const p = detailP(pid);
@@ -4032,18 +4462,19 @@ function renderDrawer(){
     };
   });
 }
-function parseAmt(v){
-  const raw = String(v || "").replace(/[,\s원]/g, "");
+function parseAmt(v){                                   /* 백만원 단위 입력 → 원 */
+  const raw = String(v || "").replace(/[,\s원]|백만/g, "");
   if (!raw) return null;
-  if (!/^\d+$/.test(raw)) return undefined; // 형식 오류
-  return +raw;
+  if (!/^\d+(\.\d+)?$/.test(raw)) return undefined; // 형식 오류
+  return Math.round(+raw * MWON);
 }
+const amtInputText = n => n == null ? "" : String(toM(n));
 /* 금액 입력란 실시간 천단위 콤마 */
-function attachComma(input){
+function attachComma(input){                             /* 백만원 단위: 숫자와 소수점 1개만 허용 */
   input.addEventListener("input", () => {
-    const digits = input.value.replace(/[^\d]/g, "");
-    const formatted = digits ? (+digits).toLocaleString("ko-KR") : "";
-    if (input.value !== formatted) input.value = formatted;
+    let v = input.value.replace(/[^\d.]/g, "");
+    const i = v.indexOf("."); if (i > -1) v = v.slice(0, i + 1) + v.slice(i + 1).replace(/\./g, "");
+    if (input.value !== v) input.value = v;
   });
 }
 function editFormHtml(p){
@@ -4071,8 +4502,8 @@ function editFormHtml(p){
       <div class="fld"><label for="edType">유형</label><select id="edType">${typeOpts}</select></div>
       <div class="fld"><label for="edSector">사업 구분</label><select id="edSector">${sectorOpts}</select></div>
       <div class="fld" data-f="edAmount">
-        <label for="edAmount">사업예산 (원)</label>
-        <input type="text" id="edAmount" inputmode="numeric" value="${p.amount != null ? p.amount.toLocaleString("ko-KR") : ""}">
+        <label for="edAmount">사업예산 (백만원)</label>
+        <input type="text" id="edAmount" inputmode="decimal" value="${amtInputText(p.amount)}" placeholder="백만원 단위">
         <div class="conv" id="edAmtConv"></div>
         <span class="msg">숫자만 입력하세요</span>
       </div>
@@ -4214,7 +4645,7 @@ function transition(p, to, opts = {}){
   const prev = { status: p.status, orderWon: p.orderWon, modifiedAt: p.modifiedAt, revLen: p.revisions.length };
   let extra = "";
   if (to === "P6" && (p.status === "P4" || p.status === "P5")){
-    p.revisions.push({ no: p.revisions.length + 1, date: REF, note: "협의 중 수정 요청 접수" });
+    p.revisions.push({ no: p.revisions.length + 1, date: todayISO(), note: "협의 중 수정 요청 접수" });
     extra = ` · 수정요청 ${p.revisions.length}차 기록`;
   }
   p.status = to;
@@ -4240,7 +4671,7 @@ const EXPORT_COLS = [
   ["유형", p => p.type], ["사업 구분", p => p.sector || ""],
   ["단계", p => STATES[p.status].name], ["단계 그룹", p => STATES[p.status].grp],
   ["수주완료", p => isWon(p) ? "예" : "아니오"],
-  ["사업예산(원)", p => p.amount], ["긴급도", p => p.urgency],
+  ["사업예산(백만원)", p => toM(p.amount)], ["긴급도", p => p.urgency],
   ["경과일", p => TERMINAL.has(p.status) ? "" : elapsedOf(p)],
   ["위험", p => ({red: "정체", amber: "주의"})[riskOf(p)] || ""],
   ["발주처", p => p.client], ["발주처 담당자", p => p.clientContact], ["발주처 연락처", p => p.phone],
@@ -4358,16 +4789,15 @@ function nextIdFor(dateStr){
   let max = 0;
   if (new URLSearchParams(location.search).has("embed")) document.body.classList.add("embed");
 DATA.forEach(p => {
-    const m = p.id.match(/^AT-(\d{2})-(\d{4})$/);
+    const m = p.id.match(/^IT-(\d{2})-(\d{4})$/);
     if (m && +m[1] === yy) max = Math.max(max, +m[2]);
   });
-  return `AT-${String(yy).padStart(2, "0")}-${String(max + 1).padStart(4, "0")}`;
+  return `IT-${String(yy).padStart(2, "0")}-${String(max + 1).padStart(4, "0")}`;
 }
 function updateIdPreview(){ $("#mdId").textContent = "채번 예정 " + nextIdFor(F.start.value); }
 function amountValue(){
-  const raw = F.amount.value.replace(/[,\s원]/g, "");
-  if (!raw || !/^\d+$/.test(raw)) return null;
-  return +raw;
+  const v = parseAmt(F.amount.value);
+  return v == null || v === undefined ? null : v;
 }
 attachComma(F.amount);
 F.amount.addEventListener("input", () => {
@@ -4507,7 +4937,7 @@ async function aiFill(){
     if (aiSetField(F.name, d.name)) filled++;
     if (aiSetSelect(F.type, d.type)) filled++;
     if (d.sector && ["민간","공공"].includes(d.sector) && aiSetSelect(F.sector, d.sector)) filled++;
-    if (d.amount != null && +d.amount > 0 && aiSetField(F.amount, String(d.amount))) filled++;
+    if (d.amount != null && +d.amount > 0 && aiSetField(F.amount, String(+d.amount >= 1e5 ? toM(+d.amount) : +d.amount))) filled++;
     if (aiSetField(F.client, d.client)) filled++;
     if (aiSetField(F.contact, d.contact)) filled++;
     if (aiSetField(F.phone, d.phone)) filled++;
@@ -4651,7 +5081,7 @@ function pickCrm(l){
   set(F.type, CRM_DIV_TYPE[l.div] || "", "type");
   const pub = /청$|군$|시청|구청|재단|공단|공사$|학교|센터$/.test(l.customer || "");
   set(F.sector, pub ? "공공" : "민간", "sector");
-  if (l.amount != null) set(F.amount, String(Math.round(l.amount * 1e6)), "amount");
+  if (l.amount != null) set(F.amount, String(l.amount), "amount");
   set(F.client, l.customer, "client");
   set(F.contact, l.contact, "contact");
   set(F.phone, l.phone, "phone");
@@ -4823,7 +5253,133 @@ function renderOrg(){
       <div class="org-group"><div class="og-title">경영지원</div>${unitBox("경영지원")}</div>
     </div>
     ${inactive.length ? `<div class="org-inactive"><div class="og-title">퇴사·미분류 (과거 담당 이력만 표시)</div>
-      <div class="oi-list">${inactive.map(x => `<span>${esc(mFull(x.m))} · ${x.n}건</span>`).join("")}</div></div>` : ""}`;
+      <div class="oi-list">${inactive.map(x => `<span>${esc(mFull(x.m))} · ${x.n}건</span>`).join("")}</div></div>` : ""}
+    ${rateTableHtml()}`;
+  wireRateTable();
+}
+/* ---- 디자이너별 대가기준·표준인건비 (연도별, 관리자 수정) ---- */
+let rateYearSel = null;
+/* 표준인건비 열람 권한: 지정된 구성원(id)만 표를 볼 수 있음. 기본값 = 대표이사 + 디자인실장. 대표이사만 권한 지정 가능 */
+const RATE_VIEWERS_KEY = "ittang.design.rateViewers.v1";
+let RATE_VIEWERS = null;
+try { const v = JSON.parse(localStorage.getItem(RATE_VIEWERS_KEY) || "null"); if (Array.isArray(v)) RATE_VIEWERS = v; } catch (e) {}
+if (!RATE_VIEWERS) RATE_VIEWERS = MEMBERS.filter(m => m.active && (m.role === "대표이사" || m.unit === "디자인실")).map(m => m.id);
+const canViewRates = () => { const m = currentUser(); return !!m && RATE_VIEWERS.includes(m.id); };
+const canGrantRates = () => { const m = currentUser(); return !!m && m.role === "대표이사"; };
+function saveRateViewers(){ try { localStorage.setItem(RATE_VIEWERS_KEY, JSON.stringify(RATE_VIEWERS)); } catch (e) {} }
+function rateTableHtml(){
+  if (!canViewRates()) return "";   /* 권한 없는 사용자에게는 섹션 자체를 표시하지 않음 */
+  const ys = rateYears();
+  if (!rateYearSel || !RATES[rateYearSel]) rateYearSel = ys[ys.length - 1];
+  const tbl = RATES[rateYearSel];
+  const admin = isAdmin();
+  const roomUnits = ["기획파트","디자인파트","설계파트","상품개발파트"];
+  const members = MEMBERS.filter(m => m.active && roomUnits.includes(m.unit)).sort((a, b) => ROLE_RANK[b.role] - ROLE_RANK[a.role] || a.id - b.id);
+  const extra = Object.keys(tbl.people).filter(n => !members.some(m => m.name === n));   /* 표에는 있으나 재직 디자인실이 아닌 이름(퇴사자 등) */
+  const fmtN = n => n == null || n === "" ? "—" : Math.round(n).toLocaleString("ko-KR");
+  const row = (name, title, unit, inactiveRow) => {
+    const yrs = (tbl.people[name] || {}).years;
+    const grade = yrs == null || yrs === "" ? null : gradeByYears(yrs, tbl.rules);
+    const daily = grade ? tbl.daily[grade] : null;
+    return `<tr data-rn="${esc(name)}"${inactiveRow ? ' class="dim"' : ""}>
+      <td><b>${esc(name)}</b>${title ? ` <span class="dim2">${esc(title)}</span>` : ""}</td><td class="dim2">${esc(unit || "")}</td>
+      <td><input type="number" class="mono" data-ry="${esc(name)}" value="${yrs == null ? "" : yrs}" min="0" max="60" step="0.5" placeholder="연차"${admin ? "" : " disabled"}></td>
+      <td data-rg="${esc(name)}">${grade ? `<span class="gradetag">${esc(grade)}</span>` : "<span class=\"dim2\">—</span>"}</td>
+      <td class="mono num" data-rd="${esc(name)}">${fmtN(daily)}</td>
+      <td class="mono num" data-rh="${esc(name)}">${daily ? fmtN(daily / 8) : "—"}</td></tr>`;
+  };
+  const unitLabel = k => (ORG_UNITS.find(u => u.key === k) || {}).label || k;
+  const ruleRows = GRADES.map(g => `<tr data-gr="${g}"><td><span class="gradetag">${g}</span></td>
+      <td><input type="number" class="mono" data-gy="${g}" value="${tbl.rules[g]}" min="0" max="60" step="0.5"${admin ? "" : " disabled"}> <span class="dim2">년 이상</span></td>
+      <td><input type="number" class="mono" data-gd="${g}" value="${tbl.daily[g]}" min="0" step="1"${admin ? "" : " disabled"}></td>
+      <td class="mono num">${fmtN(tbl.daily[g] / 8)}</td></tr>`).join("");
+  return `<div class="org-rates"><div class="og-title">디자이너별 대가기준·표준인건비
+      <span class="dim2" style="font-weight:400;margin-left:8px">연차 → 등급(대가기준) → 표준인건비(일당) · 시급 = 일당 ÷ 8 · 업무일지 인건비·프로젝트 디자인 비용 계산에 사용 · 작업일의 연도 기준 적용</span></div>
+    <div class="rate-ctl">
+      <span>적용 연도</span>
+      <select id="rateYear">${ys.map(y => `<option${y === rateYearSel ? " selected" : ""}>${y}</option>`).join("")}</select>
+      ${admin ? `<button class="mini" id="rateYearAdd">＋ 연도 추가 (현재 표 복사)</button>` : ""}
+      ${admin && ys.length > 1 ? `<button class="mini" id="rateYearDel">이 연도 삭제</button>` : ""}
+      <span class="flex1"></span>
+      ${canGrantRates() ? `<button id="rateViewers" title="이 표를 볼 수 있는 구성원 지정">열람 권한 (${RATE_VIEWERS.filter(id => MEMBERS.some(m => m.id === id && m.active)).length}명)</button>` : ""}
+      ${admin ? `<button class="primary" id="rateSave">저장</button>` : `<span class="dim2">수정은 관리자만 가능</span>`}
+    </div>
+    <div class="rate-grid">
+      <div>
+        <div class="rate-sub">디자이너별 연차 · 산출 결과</div>
+        <table class="dtab rate-tab"><thead><tr><th>이름</th><th>소속</th><th>연차(년)</th><th>대가기준(등급)</th><th>표준인건비 · 일당(원)</th><th>시급(원)</th></tr></thead><tbody>
+          ${members.map(m => row(m.name, m.title, unitLabel(m.unit), false)).join("")}
+          ${extra.map(n => { const m = memberByName(n); return row(n, m ? m.title : "", m && m.active ? unitLabel(m.unit) : "퇴사·미분류", true); }).join("")}
+        </tbody></table>
+      </div>
+      <div>
+        <div class="rate-sub">등급 기준표 (${esc(rateYearSel)}년)</div>
+        <table class="dtab rate-rules"><thead><tr><th>등급</th><th>최소 연차</th><th>일당(원)</th><th>시급(원)</th></tr></thead><tbody>${ruleRows}</tbody></table>
+        <div class="dim2" style="margin-top:6px">연차가 각 등급의 최소 연차 이상이면 그 등급이 적용되며(가장 높은 등급 우선), 연차가 비어 있거나 표에 없는 디자이너는 초급 일당이 적용됩니다.</div>
+      </div>
+    </div></div>`;
+}
+function wireRateTable(){
+  const box = $("#orgWrap .org-rates"); if (!box) return;
+  const rv = box.querySelector("#rateViewers");
+  if (rv) rv.onclick = e => {
+    closeCondMenu();
+    const r = e.currentTarget.getBoundingClientRect();
+    const mm = document.createElement("div");
+    mm.className = "condmenu"; mm.id = "condMenu";
+    const list = MEMBERS.filter(m => m.active).sort((a, b) => a.id - b.id);
+    mm.innerHTML = `<span class="cm-title">표준인건비 열람 권한 — 구성원 선택</span><div class="cm-list">` +
+      list.map(m => `<label class="cm-opt"><input type="checkbox" value="${m.id}"${RATE_VIEWERS.includes(m.id) ? " checked" : ""}${m.role === "대표이사" ? " disabled" : ""}>${esc(m.name)} <span style="color:var(--ink3);font-size:11px">${esc(m.title)} · ${esc((ORG_UNITS.find(u => u.key === m.unit) || {}).label || m.unit)}</span></label>`).join("") +
+      `</div><div class="cm-foot"><button class="btn-ghost" id="cmCancel">취소</button><button class="btn-submit" id="cmApply">적용</button></div>`;
+    placeCondMenu(mm, r.left, r.bottom + 6);
+    document.addEventListener("mousedown", cmOutside);
+    mm.querySelector("#cmCancel").onclick = closeCondMenu;
+    mm.querySelector("#cmApply").onclick = () => {
+      RATE_VIEWERS = [...new Set([...list.filter(m => m.role === "대표이사").map(m => m.id), ...[...mm.querySelectorAll("input:checked")].map(i => +i.value)])];
+      saveRateViewers(); closeCondMenu(); renderOrg(); showToast(`열람 권한을 ${RATE_VIEWERS.length}명에게 지정했습니다`);
+    };
+  };
+  const ySel = box.querySelector("#rateYear");
+  ySel.onchange = () => { rateYearSel = ySel.value; renderOrg(); };
+  /* 연차·기준표 입력 시 등급·일당·시급 즉시 재계산 (저장 전 미리보기) */
+  const fmtN = n => n == null || isNaN(n) ? "—" : Math.round(n).toLocaleString("ko-KR");
+  const readRules = () => { const r = {}, d = {}; GRADES.forEach(g => { r[g] = +box.querySelector(`[data-gy="${g}"]`).value; d[g] = +box.querySelector(`[data-gd="${g}"]`).value; }); return { r, d }; };
+  const recalc = () => {
+    const { r, d } = readRules();
+    GRADES.forEach(g => { const tr = box.querySelector(`tr[data-gr="${g}"]`); tr.lastElementChild.textContent = fmtN(d[g] / 8); });
+    box.querySelectorAll("tr[data-rn]").forEach(tr => {
+      const n = tr.dataset.rn, v = tr.querySelector("[data-ry]").value;
+      const g = v === "" ? null : gradeByYears(v, r);
+      tr.querySelector("[data-rg]").innerHTML = g ? `<span class="gradetag">${esc(g)}</span>` : `<span class="dim2">—</span>`;
+      tr.querySelector("[data-rd]").textContent = g ? fmtN(d[g]) : "—";
+      tr.querySelector("[data-rh]").textContent = g ? fmtN(d[g] / 8) : "—";
+    });
+  };
+  box.querySelectorAll("[data-ry],[data-gy],[data-gd]").forEach(inp => inp.addEventListener("input", recalc));
+  const add = box.querySelector("#rateYearAdd");
+  if (add) add.onclick = () => {
+    const y = prompt("추가할 연도 (예: " + (+rateYearSel + 1) + ")", String(+rateYearSel + 1));
+    if (!y || !/^\d{4}$/.test(y.trim())) return;
+    if (RATES[y.trim()]){ showToast("이미 있는 연도입니다"); rateYearSel = y.trim(); renderOrg(); return; }
+    RATES[y.trim()] = JSON.parse(JSON.stringify(RATES[rateYearSel]));
+    rateYearSel = y.trim(); saveRates(); renderOrg(); showToast(`${y.trim()}년 대가기준을 추가했습니다 (이전 표 복사)`);
+  };
+  const del = box.querySelector("#rateYearDel");
+  if (del) del.onclick = () => {
+    if (!confirm(`${rateYearSel}년 대가기준을 삭제할까요?`)) return;
+    delete RATES[rateYearSel]; rateYearSel = null; saveRates(); renderOrg(); render();
+  };
+  const save = box.querySelector("#rateSave");
+  if (save) save.onclick = () => {
+    const { r, d } = readRules();
+    const people = {};
+    box.querySelectorAll("tr[data-rn]").forEach(tr => {
+      const v = tr.querySelector("[data-ry]").value;
+      if (v !== "" && !isNaN(+v)) people[tr.dataset.rn] = { years: +v };
+    });
+    RATES[rateYearSel] = { rules: r, daily: d, people }; saveRates(); renderOrg(); render();
+    showToast(`${rateYearSel}년 대가기준을 저장했습니다`);
+  };
 }
 $("#btnOrg").addEventListener("click", openOrg);
 $("#orgClose").addEventListener("click", closeOrg);
@@ -4878,10 +5434,18 @@ async function submitLogin(){
     if (!email){ $("#lgErr").textContent = "이메일을 입력하세요"; return; }
     $("#lgErr").textContent = ""; $("#lgBtn").disabled = true;
     try {
+      $("#lgErr").textContent = "서버 데이터 불러오는 중…"; $("#lgErr").style.color = "var(--ink3)";
       await Store.supa.signIn(email, pw);
+      Store.supa.sessionEmail = email;
+      await Store.supa.loadAll();
+      const emps = MEMBERS.filter(x => x.active).map(mDisplay).sort((a, b) => a.localeCompare(b, "ko"));
+      EMPLOYEES.splice(0, EMPLOYEES.length, ...emps);
+      EMPLOYEES_ALL.splice(0, EMPLOYEES_ALL.length, ...[...new Set([...emps, ...DATA.flatMap(ownerList)])].sort((a, b) => a.localeCompare(b, "ko")));
+      $("#lgErr").textContent = ""; $("#lgErr").style.color = "";
+      const badge = $("#storeBadge"); if (badge) badge.textContent = `서버 · 구성원 ${MEMBERS.length}명 · 프로젝트 ${DATA.length}건`;
       const m = MEMBERS.find(x => (x.email || "").toLowerCase() === email.toLowerCase() && x.active);
-      if (!m) throw new Error("로그인은 되었지만 조직도(members)에 이 이메일의 구성원이 없습니다. 영업관리 앱에서 구성원을 먼저 등록하세요.");
-      doLogin(m.id);
+      if (!m){ try { await Store.supa.signOut(); } catch (e2) {} throw new Error("로그인은 되었지만 조직도(members)에 이 이메일(" + email + ")의 구성원이 없습니다. 관리자에게 조직도 이메일 등록을 요청하세요."); }
+      doLogin(m.id); render();
     } catch (err) { $("#lgErr").textContent = err.message || "로그인에 실패했습니다"; }
     finally { $("#lgBtn").disabled = false; }
     return;
@@ -5016,6 +5580,7 @@ document.addEventListener("mouseup", e => {
 document.addEventListener("click", e => {
   if (suppressCardClick && e.target.closest("[data-drag]")){ e.stopPropagation(); e.preventDefault(); }
 }, true);
+
 function endDrag(){
   dragId = null;
   document.body.classList.remove("dragging-card");
@@ -5136,24 +5701,17 @@ function setView(v){
   wrap.addEventListener("click", e => {
     const t = e.target.closest("button");
     if (!t) return;
-    if (t.id === "dmCount"){ dashDesignMetric = "count"; render(); return; }
-    if (t.id === "dmHours"){ dashDesignMetric = "hours"; render(); return; }
-    if (t.dataset.des !== undefined){
-      const nm = t.dataset.des;
-      if (nm === "__all"){ dashDesigners = []; }
-      else if (dashDesigners.includes(nm)){ dashDesigners = dashDesigners.filter(x => x !== nm); }
-      else { dashDesigners = [...dashDesigners, nm]; }
-      render();
+    if (t.id === "dmCount"){ dashDesignMetric = "count"; saveSettings(); render(); return; }
+    if (t.id === "dmHours"){ dashDesignMetric = "hours"; saveSettings(); render(); return; }
+    if (t.id === "dmBudget"){ dashDesignMetric = "budget"; saveSettings(); render(); return; }
+    if (t.dataset.desmenu){
+      const key = t.dataset.desmenu;
+      const names = key === "work" ? dashNames.work : key === "input" ? dashNames.input : key === "won" ? dashNames.won : dashNames.cost;
+      const r = t.getBoundingClientRect();
+      openDesDropdown(key, names, r.left, r.bottom + 6);
       return;
     }
-    if (t.dataset.inp !== undefined){
-      const nm = t.dataset.inp;
-      if (nm === "__all"){ dashInputDesigners = []; }
-      else if (dashInputDesigners.includes(nm)){ dashInputDesigners = dashInputDesigners.filter(x => x !== nm); }
-      else { dashInputDesigners = [...dashInputDesigners, nm]; }
-      render();
-      return;
-    }
+    if (t.dataset.desclear){ DASH_DES_SETS[t.dataset.desclear].set([]); saveSettings(); render(); return; }
     if (t.dataset.range !== undefined){
       const m = parseInt(t.dataset.range, 10);
       if (m === 0){ dashFrom = ""; dashTo = ""; }
@@ -5163,12 +5721,12 @@ function setView(v){
         const p = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
         dashFrom = p(from); dashTo = REF;
       }
-      render();
+      saveSettings(); render();
     }
   });
   wrap.addEventListener("change", e => {
-    if (e.target.id === "dRangeFrom"){ dashFrom = e.target.value; clampRange(); render(); }
-    if (e.target.id === "dRangeTo"){ dashTo = e.target.value; clampRange(); render(); }
+    if (e.target.id === "dRangeFrom"){ dashFrom = e.target.value; clampRange(); saveSettings(); render(); }
+    if (e.target.id === "dRangeTo"){ dashTo = e.target.value; clampRange(); saveSettings(); render(); }
   });
 })();
 $("#vwBoard").addEventListener("click", () => setView("board"));
@@ -5270,6 +5828,8 @@ function saveSettings(){
       visibleCols, listSort, colFilterVals,
       ganttStartField, ganttEndField, ganttFrom, ganttTo, ganttNameW, ganttScale,
       schedDesigners,
+      dashFrom, dashTo, dashDesignMetric, dashDesigners, dashInputDesigners, dashWonDesigners, dashCostDesigners,
+      kpiFrom, kpiTo,
     }));
   } catch (e) {}
 }
@@ -5300,6 +5860,16 @@ function loadSettings(){
   if (typeof s.ganttNameW === "number" && s.ganttNameW >= 120 && s.ganttNameW <= 560) ganttNameW = s.ganttNameW;
   if (["day", "week", "month"].includes(s.ganttScale)) ganttScale = s.ganttScale;
   if (Array.isArray(s.schedDesigners)) schedDesigners = s.schedDesigners.filter(x => typeof x === "string");
+  const strArr = v => Array.isArray(v) ? v.filter(x => typeof x === "string") : null;
+  if (strArr(s.dashDesigners)) dashDesigners = strArr(s.dashDesigners);
+  if (strArr(s.dashInputDesigners)) dashInputDesigners = strArr(s.dashInputDesigners);
+  if (strArr(s.dashWonDesigners)) dashWonDesigners = strArr(s.dashWonDesigners);
+  if (strArr(s.dashCostDesigners)) dashCostDesigners = strArr(s.dashCostDesigners);
+  if (typeof s.kpiFrom === "string") kpiFrom = s.kpiFrom;
+  if (typeof s.kpiTo === "string") kpiTo = s.kpiTo;
+  if (typeof s.dashFrom === "string") dashFrom = s.dashFrom;
+  if (typeof s.dashTo === "string") dashTo = s.dashTo;
+  if (["count","hours","budget"].includes(s.dashDesignMetric)) dashDesignMetric = s.dashDesignMetric;
   /* 상태 선택 버튼 표시 동기화 */
   const bs = $("#btnStages");
   if (bs){
@@ -5312,11 +5882,9 @@ function loadSettings(){
 (async function init(){
   try { await Store.init(); } catch (e) { console.error("데이터 로드 실패", e); showToast("데이터를 불러오지 못했습니다 — 내장 데이터로 표시합니다"); }
   if (Store.backend === "supabase"){
-    /* 서버 조직도 기준으로 직원 목록 재구성 */
     const emps = MEMBERS.filter(m => m.active).map(mDisplay).sort((a, b) => a.localeCompare(b, "ko"));
     EMPLOYEES.splice(0, EMPLOYEES.length, ...emps);
     EMPLOYEES_ALL.splice(0, EMPLOYEES_ALL.length, ...[...new Set([...emps, ...DATA.flatMap(ownerList)])].sort((a, b) => a.localeCompare(b, "ko")));
-    /* 공용 세션(영업관리에서 로그인) → 같은 계정으로 자동 로그인, 세션 없으면 로그인 화면 */
     const em = (Store.supa.sessionEmail || "").toLowerCase();
     const mem = em ? MEMBERS.find(x => (x.email || "").toLowerCase() === em && x.active) : null;
     currentUserId = mem ? mem.id : null;
